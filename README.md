@@ -25,6 +25,7 @@ Do something to run Pupa and make sure it's working
 two folders, `larva` and `imago`. text documents go in `larva`, along with some options. Running Pupa generates a site in `imago`
 
 ```
+pupa
 ├── larva
 │   ├── entries
 │   │   └── soup.txt
@@ -53,7 +54,7 @@ Run something to generate CSS and HTML in the `imago` directory based on the con
 
 ### Embellishments
 
-A modified subset of Markdown is available in Pupa to allow embellishing text. Embellishments in Pupa are designed to make reading and writing un-rendered text both easy and unambiguous, something Markdown attempts but doesn't quite nail.
+A modified subset of Markdown is available in Pupa to allow embellishing text. Embellishments in Pupa are designed to make reading and writing un-rendered text both easy and unambiguous, something Markdown attempts but doesn't quite nail. Luckily, we have a lot less to deal with here.
 
 #### Bold
 ```
@@ -101,36 +102,36 @@ Check out my [soup recipe](https://example.com) for details.
 
 #### Nesting
 
-Embellishments besides links are allowed to be nested.
+All embellishments besides links are allowed to be nested.
 
 ### Options
 
-`options.txt` defines options for the whole site. Each line contains a one-word option name followed by a space followed by the value for that option. Options, their description, and available values:
+`larva/options.txt` defines options for the whole site. Each line contains a one-word option name followed by a space followed by the value for that option. Here are all the options, their description, and available values:
 
-* `font`: font family for text on the site
+* `fontIs`: font family for text on the site
   * arbitrary CSS
-* `size`: font size for text
+* `sizeIs`: font size for text
   * arbitrary CSS
-* `textColor`: default color for all text
+* `textColorIs`: default color for all text
   * arbitrary CSS
-* `linkColor`: default color for links
+* `linkColorIs`: default color for links
   * arbitrary CSS
-* `backgroundColor`: background color for all pages
+* `backgroundColorIs`: background color for all pages
   * arbitrary CSS
-* `index`: how or whether to display the index of site pages
+* `showIndexWith`: how or whether to display the index of site pages
   * `dates` (display each page's title with its date)
   * `noDates` (display each page's title only)
-  * `none` (don't display an index of pages, useful if you'll make your own index)
-* `sortBy`: order in which to sort pages
+  * `dont` (don't display an index of pages, useful if you'll make your own index)
+* `sortIndexBy`: order in which to sort pages in the index
   * `newest` (sort lexicographically by date line, [note: this won't work with most human-readable dates](https://twitter.com/wormplaza/status/1295572138494234624))
   * `oldest`
   * `filename`
   * `title`
-* `entryURLs`: how to derive the URLs for entry pages
+* `entryURLsBasedOn`: how to derive the URLs for entry pages
   * `title`
   * `filename`
   * `date`
-* `outputLocation`: path at which to generate the site
+* `outputLocationIs`: path at which to generate the site
   * valid path string
 
 ## Contributing
