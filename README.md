@@ -16,7 +16,7 @@ Pupa depends on
 
 Do stuff to install it.
 
-Do something to run it and make sure it's working
+Do something to run Pupa and make sure it's working
 
 ## Usage
 
@@ -30,7 +30,7 @@ two folders, `larva` and `imago`. text documents go in `larva`, along with some 
 │   │   └── soup.txt
 │   ├── homepage.txt
 │   └── options.txt
-├── imago
+└── imago
     ├── index.html
     ├── soup
     │   └── index.html
