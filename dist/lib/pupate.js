@@ -4,12 +4,14 @@ exports.ecdysis = exports.check = exports.spawn = exports.welcome = void 0;
 var fs = require("fs");
 var colors = require("colors");
 var path = require("path");
+var OPTIONS_FILENAME = 'options.txt';
+var HOMEPAGE_FILENAME = 'homepage.txt';
 // Return a welcome message
 function welcome() {
-    return 'Welcome to Pupa!';
+    return 'Welcome to Pupate!';
 }
 exports.welcome = welcome;
-// Spawns a new valid Pupa directory, writing files and directories that don't exist.
+// Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 function spawn() {
     console.log(colors.green('Spawning...'));
     if (!fs.existsSync('larva')) {
@@ -18,11 +20,11 @@ function spawn() {
     if (!fs.existsSync('larva/entries')) {
         fs.mkdirSync('larva/entries');
     }
-    if (!fs.existsSync('larva/homepage.txt')) {
-        fs.copyFileSync(path.resolve(__dirname, './defaults/larva/homepage.txt'), './larva/homepage.txt');
+    if (!fs.existsSync("larva/" + HOMEPAGE_FILENAME)) {
+        fs.copyFileSync(path.resolve(__dirname, "./defaults/larva/" + HOMEPAGE_FILENAME), "./larva/" + HOMEPAGE_FILENAME);
     }
-    if (!fs.existsSync('options.txt')) {
-        fs.copyFileSync(path.resolve(__dirname, './defaults/options.txt'), './options.txt');
+    if (!fs.existsSync(OPTIONS_FILENAME)) {
+        fs.copyFileSync(path.resolve(__dirname, "./defaults/" + OPTIONS_FILENAME), "./" + OPTIONS_FILENAME);
     }
     console.log(colors.green('Spawning finished!'));
 }
@@ -33,15 +35,8 @@ function check() {
     }
 }
 exports.check = check;
-function ecdysis() {
-    console.log(colors.green('Molting...'));
-    check();
-    var options = getOptions();
-    console.log(options);
-}
-exports.ecdysis = ecdysis;
 function isPupaDir() {
-    var requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', 'options.txt',];
+    var requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', OPTIONS_FILENAME,];
     var ok = true;
     for (var _i = 0, requiredPaths_1 = requiredPaths; _i < requiredPaths_1.length; _i++) {
         var path_1 = requiredPaths_1[_i];
@@ -54,7 +49,7 @@ function isPupaDir() {
 }
 // Returns a dictionary of option-name: value pairs.
 function getOptions() {
-    var optionsList = fs.readFileSync('options.txt').toString().split(/\r?\n/);
+    var optionsList = fs.readFileSync(OPTIONS_FILENAME).toString().split(/\r?\n/);
     if (!validOptions(optionsList)) {
         throw colors.red('Options file not formatted properly');
     }
@@ -66,8 +61,8 @@ function getOptions() {
             continue;
         }
         // no value for standalone option names
-        if (/^[A-z]+$/.test(o)) {
-            optionsDict[o] = undefined;
+        if (/^[A-z]+$/.test(o.trim())) {
+            optionsDict[o.trim()] = undefined;
             continue;
         }
         optionsDict[o.substr(0, o.indexOf(' '))] = o.substr(o.indexOf(' ') + 1);
@@ -85,4 +80,60 @@ function validOptions(optionsList) {
         }
     }
     return true;
+}
+function ecdysis() {
+    console.log(colors.green('Molting...'));
+    // make sure current directory is Pupate-shaped
+    check();
+    // get user-defined options
+    var options = getOptions();
+    console.log(options);
+    // make entry objects from the text files in the entries directory
+    var entries = [];
+    for (var _i = 0, _a = fs.readdirSync('./larva/entries').filter(isTxt); _i < _a.length; _i++) {
+        var filepath = _a[_i];
+        entries.push(makeEntry("./larva/entries/" + filepath));
+    }
+    var outputLocation;
+    // default output location is imago directory, level with larva
+    if (options['outputLocationIs'] == undefined) {
+        outputLocation = './imago';
+    }
+    else {
+        outputLocation = options['outputLocationIs'];
+    }
+    if (!fs.existsSync(outputLocation)) {
+        fs.mkdirSync(outputLocation, { recursive: true });
+    }
+    // create homepage
+    fs.writeFileSync(outputLocation + "/index.html", renderEntry(makeEntry('./larva/homepage.txt')));
+    // create pages
+    for (var _b = 0, entries_1 = entries; _b < entries_1.length; _b++) {
+        var entry = entries_1[_b];
+        createPage(entry, outputLocation);
+    }
+}
+exports.ecdysis = ecdysis;
+function isTxt(filepath) {
+    return filepath.endsWith('.txt');
+}
+function makeEntry(path) {
+    var file = fs.readFileSync(path);
+    var lines = file.toString().split(/\r?\n/);
+    // final filename in path, without extension
+    var filename = path.split('/').slice(-1)[0].split('.').slice(0, 1)[0];
+    return {
+        filename: filename,
+        title: lines[0],
+        datestring: lines[1],
+        content: lines.slice(2).join('\n') // all lines after that are content
+    };
+}
+function createPage(entry, path) {
+    var urlPart = entry.filename;
+    fs.mkdirSync(path + "/" + urlPart, { recursive: true });
+    fs.writeFileSync(path + "/" + urlPart + "/index.html", renderEntry(entry));
+}
+function renderEntry(entry) {
+    return "Rendered entry: " + entry.title + ", date: " + entry.datestring + "\ncontent: " + entry.content + " !! :) :)";
 }

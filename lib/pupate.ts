@@ -2,13 +2,16 @@ import * as fs from 'fs'
 import * as colors from 'colors'
 import * as path from 'path'
 
+const OPTIONS_FILENAME = 'options.txt'
+const HOMEPAGE_FILENAME = 'homepage.txt'
+
 // Return a welcome message
-export function welcome() {
-  return 'Welcome to Pupa!'
+export function welcome(): string {
+  return 'Welcome to Pupate!'
 }
 
-// Spawns a new valid Pupa directory, writing files and directories that don't exist.
-export function spawn() {
+// Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
+export function spawn(): void {
   console.log(colors.green('Spawning...'))
   if (!fs.existsSync('larva')) {
     fs.mkdirSync('larva')
@@ -16,31 +19,24 @@ export function spawn() {
   if (!fs.existsSync('larva/entries')) {
     fs.mkdirSync('larva/entries')
   }
-  if (!fs.existsSync('larva/homepage.txt')) {
-    fs.copyFileSync(path.resolve(__dirname, './defaults/larva/homepage.txt'), './larva/homepage.txt')
+  if (!fs.existsSync(`larva/${HOMEPAGE_FILENAME}`)) {
+    fs.copyFileSync(path.resolve(__dirname, `./defaults/larva/${HOMEPAGE_FILENAME}`), `./larva/${HOMEPAGE_FILENAME}`)
   }
-  if (!fs.existsSync('options.txt')) {
-    fs.copyFileSync(path.resolve(__dirname, './defaults/options.txt'), './options.txt')
+  if (!fs.existsSync(OPTIONS_FILENAME)) {
+    fs.copyFileSync(path.resolve(__dirname, `./defaults/${OPTIONS_FILENAME}`), `./${OPTIONS_FILENAME}`)
   }
 
   console.log(colors.green('Spawning finished!'))
 }
 
-export function check() {
+export function check(): void {
   if (!isPupaDir()) {
     throw colors.red('Not a Pupa-shaped directory')
   }
 }
 
-export function ecdysis() {
-  console.log(colors.green('Molting...'))
-  check()
-  const options = getOptions()
-  console.log(options)
-}
-
 function isPupaDir(): boolean {
-  let requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', 'options.txt', ]
+  let requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', OPTIONS_FILENAME, ]
   let ok = true
   for (const path of requiredPaths) {
     if (!fs.existsSync(path)) {
@@ -55,7 +51,7 @@ type Options = Record<string, string | undefined>
 
 // Returns a dictionary of option-name: value pairs.
 function getOptions(): Options {
-  let optionsList: string[] = fs.readFileSync('options.txt').toString().split(/\r?\n/)
+  let optionsList: string[] = fs.readFileSync(OPTIONS_FILENAME).toString().split(/\r?\n/)
   if (!validOptions(optionsList)) {
     throw colors.red('Options file not formatted properly')
   }
@@ -66,8 +62,8 @@ function getOptions(): Options {
       continue
     }
     // no value for standalone option names
-    if (/^[A-z]+$/.test(o)) {
-      optionsDict[o] = undefined
+    if (/^[A-z]+$/.test(o.trim())) {
+      optionsDict[o.trim()] = undefined
       continue
     }
     optionsDict[o.substr(0,o.indexOf(' '))] = o.substr(o.indexOf(' ')+1)
@@ -85,4 +81,78 @@ function validOptions(optionsList: string[]): boolean {
     }
   }
   return true
+}
+
+interface Entry {
+  filename: string, // filename without extension
+  title: string,
+  datestring: string,
+  content: string
+}
+
+export function ecdysis(): void {
+  console.log(colors.green('Molting...'))
+
+  // make sure current directory is Pupate-shaped
+  check()
+
+  // get user-defined options
+  const options = getOptions()
+  console.log(options)
+
+  // make entry objects from the text files in the entries directory
+  let entries: Entry[] = []
+  for (const filepath of fs.readdirSync('./larva/entries').filter(isTxt)) {
+    entries.push(makeEntry(`./larva/entries/${filepath}`))
+  }
+
+  let outputLocation: string
+
+  // default output location is imago directory, level with larva
+  if (options['outputLocationIs'] == undefined) {
+    outputLocation = './imago'
+  } else {
+    outputLocation = options['outputLocationIs']
+  }
+
+  if (!fs.existsSync(outputLocation)) {
+    fs.mkdirSync(outputLocation, {recursive: true})
+  }
+
+  // create homepage
+  fs.writeFileSync(`${outputLocation}/index.html`, renderEntry(makeEntry('./larva/homepage.txt')))
+
+  // create pages
+  for (const entry of entries) {
+    createPage(entry, outputLocation)
+  }
+}
+
+function isTxt(filepath: string): boolean {
+  return filepath.endsWith('.txt')
+}
+
+function makeEntry(path: string): Entry {
+  let file = fs.readFileSync(path)
+  let lines = file.toString().split(/\r?\n/)
+  // final filename in path, without extension
+  let filename = path.split('/').slice(-1)[0].split('.').slice(0,1)[0]
+
+  return {
+    filename,
+    title: lines[0], // first line is title
+    datestring: lines[1], // second is datestring
+    content: lines.slice(2).join('\n') // all lines after that are content
+  }
+}
+
+function createPage(entry: Entry, path: string): void {
+  let urlPart: string = entry.filename
+  fs.mkdirSync(`${path}/${urlPart}`, {recursive: true})
+  fs.writeFileSync(`${path}/${urlPart}/index.html`, renderEntry(entry))
+}
+
+function renderEntry(entry: Entry): string {
+  return `Rendered entry: ${entry.title}, date: ${entry.datestring}\ncontent: ${entry.content} !! :) :)`
+  // FIXME
 }
