@@ -1,0 +1,9 @@
+fontIs 
+sizeIs 
+textColorIs 
+linkColorIs 
+backgroundColorIs 
+showIndexWith 
+sortIndexBy 
+entryURLsBasedOn 
+outputLocationIs 

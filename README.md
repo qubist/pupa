@@ -131,7 +131,7 @@ All embellishments besides links are allowed to be nested.
   * `title`
   * `filename`
   * `date`
-* `outputLocationIs`: path at which to generate the site
+* `outputLocationIs`: path at which to generate the site. Defaults to `./imago`.
   * valid path string
 
 ## Contributing

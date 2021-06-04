@@ -1,0 +1,40 @@
+{
+  "name": "pupate",
+  "version": "0.0.1",
+  "description": "Simple static site generator for text-only blogs that invites code-injection as an editing tool",
+  "main": "dist/lib/pupate.js",
+  "types": "dist/lib/pupate.d.ts",
+  "bin": {
+    "pupate": "dist/bin/index.js"
+  },
+  "preferGlobal": "true",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qubist/pupa.git"
+  },
+  "keywords": [
+    "static site",
+    "blog"
+  ],
+  "author": "Will Harris-Braun <willharrisbraun@gmail.com> (https://will.quest/)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/qubist/pupa/issues"
+  },
+  "homepage": "https://github.com/qubist/pupa#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.0",
+    "typescript": "^4.3.2"
+  }
+}
