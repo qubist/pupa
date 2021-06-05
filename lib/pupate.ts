@@ -30,12 +30,12 @@ export function spawn(): void {
 }
 
 export function check(): void {
-  if (!isPupaDir()) {
-    throw colors.red('Not a Pupa-shaped directory')
+  if (!isPupateDir()) {
+    throw colors.red('Not a Pupate-shaped directory')
   }
 }
 
-function isPupaDir(): boolean {
+function isPupateDir(): boolean {
   let requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', OPTIONS_FILENAME, ]
   let ok = true
   for (const path of requiredPaths) {
@@ -153,6 +153,7 @@ function createPage(entry: Entry, path: string): void {
 }
 
 function renderEntry(entry: Entry): string {
-  return `Rendered entry: ${entry.title}, date: ${entry.datestring}\ncontent: ${entry.content} !! :) :)`
+  console.log(entry.content)
+  return `Rendered entry: ${entry.title}, date: ${entry.datestring}\r\ncontent: ${entry.content} !! :) :)`
   // FIXME
 }

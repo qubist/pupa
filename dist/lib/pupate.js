@@ -30,12 +30,12 @@ function spawn() {
 }
 exports.spawn = spawn;
 function check() {
-    if (!isPupaDir()) {
-        throw colors.red('Not a Pupa-shaped directory');
+    if (!isPupateDir()) {
+        throw colors.red('Not a Pupate-shaped directory');
     }
 }
 exports.check = check;
-function isPupaDir() {
+function isPupateDir() {
     var requiredPaths = ['larva', 'larva/entries', 'larva/homepage.txt', OPTIONS_FILENAME,];
     var ok = true;
     for (var _i = 0, requiredPaths_1 = requiredPaths; _i < requiredPaths_1.length; _i++) {
@@ -135,5 +135,7 @@ function createPage(entry, path) {
     fs.writeFileSync(path + "/" + urlPart + "/index.html", renderEntry(entry));
 }
 function renderEntry(entry) {
-    return "Rendered entry: " + entry.title + ", date: " + entry.datestring + "\ncontent: " + entry.content + " !! :) :)";
+    console.log(entry.content);
+    return "Rendered entry: " + entry.title + ", date: " + entry.datestring + "\r\ncontent: " + entry.content + " !! :) :)";
+    // FIXME
 }

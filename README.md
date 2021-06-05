@@ -1,4 +1,4 @@
-# Pupa
+# Pupate
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -10,22 +10,22 @@ Simple static site generator for text-only blogs that invites code-injection as 
 
 ### Requirements
 
-Pupa depends on
+Pupate depends on
 
 * something
 
 Do stuff to install it.
 
-Do something to run Pupa and make sure it's working
+Do something to run Pupate and make sure it's working
 
 ## Usage
 
 ### Overview
 
-two folders, `larva` and `imago`. text documents go in `larva`, along with some options. Running Pupa generates a site in `imago`
+two folders, `larva` and `imago`. text documents go in `larva`, along with some options. Running Pupate generates a site in `imago`
 
 ```
-pupa
+pupate
 ├── larva
 │   ├── entries
 │   │   └── soup.txt
@@ -54,7 +54,7 @@ Run something to generate CSS and HTML in the `imago` directory based on the con
 
 ### Embellishments
 
-A modified subset of Markdown is available in Pupa to allow embellishing text. Embellishments in Pupa are designed to make reading and writing un-rendered text both easy and unambiguous, something Markdown attempts but doesn't quite nail. Luckily, we have a lot less to deal with here.
+A modified subset of Markdown is available in Pupate to allow embellishing text. Embellishments in Pupate are designed to make reading and writing un-rendered text both easy and unambiguous, something Markdown attempts but doesn't quite nail. Luckily, we have a lot less to deal with here.
 
 #### Bold
 ```
@@ -136,7 +136,7 @@ All embellishments besides links are allowed to be nested.
 
 ## Contributing
 
-PRs aren't currently accepted, as the project is too new. If you'd like to enter into closer collaboration with me on Pupa, feel free to send me an email. If you have an idea or problem, feel free to make an issue or PR, but be prepared for it to be moved past for now.
+PRs aren't currently accepted, as the project is too new. If you'd like to enter into closer collaboration with me on Pupate, feel free to send me an email. If you have an idea or problem, feel free to make an issue or PR, but be prepared for it to be moved past for now.
 
 ## License
 

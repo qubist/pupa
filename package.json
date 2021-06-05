@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qubist/pupa.git"
+    "url": "git+https://github.com/qubist/pupate.git"
   },
   "keywords": [
     "static site",
@@ -22,9 +22,9 @@
   "author": "Will Harris-Braun <willharrisbraun@gmail.com> (https://will.quest/)",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/qubist/pupa/issues"
+    "url": "https://github.com/qubist/pupate/issues"
   },
-  "homepage": "https://github.com/qubist/pupa#readme",
+  "homepage": "https://github.com/qubist/pupate#readme",
   "dependencies": {
     "colors": "^1.4.0",
     "fs": "^0.0.1-security",

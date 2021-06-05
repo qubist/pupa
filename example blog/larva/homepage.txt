@@ -1,5 +1,5 @@
 Will's blog
 dateline ignored
-Here's my blog. It's made with [Pupa](https://github.com/qubist/pupa), a static-site-generator I built. You can read some of my things that I've written. Go on!
+Here's my blog. It's made with [Pupate](https://github.com/qubist/pupate), a static-site-generator I built. You can read some of my things that I've written. Go on!
 
 [Back to my main site](https://will.quest)
