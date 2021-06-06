@@ -1,9 +1,9 @@
-fontIs
-sizeIs
-textColorIs
-linkColorIs
-backgroundColorIs
-showIndexWith
-sortIndexBy
+fontIs monospace
+sizeIs 15px
+textColorIs initial
+linkColorIs revert
+backgroundColorIs initial
+showIndexWith dates
+sortIndexBy date
 entryURLsBasedOn filename
 outputLocationIs ./imago/
