@@ -134,7 +134,7 @@ All embellishments besides links are allowed to be nested.
 * `outputLocationIs`: path at which to generate the site. Defaults to `./imago`.
   * valid path string
 
-You can also check out an [example options.txt in the example blog](blog/options.txt).
+You can also check out an [example options.txt in the example blog](example blog/options.txt).
 
 ## Contributing
 
