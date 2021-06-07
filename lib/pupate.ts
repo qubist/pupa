@@ -283,10 +283,10 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     let sortFunction
     switch (options.sortIndexBy) {
       case 'newest':
-        sortFunction = (a: Entry, b: Entry): number => a.datestring.localeCompare(b.datestring)
+        sortFunction = (a: Entry, b: Entry): number => -1 * a.datestring.localeCompare(b.datestring)
         break
       case 'oldest':
-        sortFunction = (a: Entry, b: Entry): number => -1 * a.datestring.localeCompare(b.datestring)
+        sortFunction = (a: Entry, b: Entry): number => a.datestring.localeCompare(b.datestring)
         break
       case 'filename':
         sortFunction = (a: Entry, b: Entry): number => a.filename.localeCompare(b.filename)

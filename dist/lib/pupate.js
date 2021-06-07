@@ -224,10 +224,10 @@ function renderHomepage(entry, pageEntries, options) {
         var sortFunction = void 0;
         switch (options.sortIndexBy) {
             case 'newest':
-                sortFunction = function (a, b) { return a.datestring.localeCompare(b.datestring); };
+                sortFunction = function (a, b) { return -1 * a.datestring.localeCompare(b.datestring); };
                 break;
             case 'oldest':
-                sortFunction = function (a, b) { return -1 * a.datestring.localeCompare(b.datestring); }; // FIXME
+                sortFunction = function (a, b) { return a.datestring.localeCompare(b.datestring); };
                 break;
             case 'filename':
                 sortFunction = function (a, b) { return a.filename.localeCompare(b.filename); };
