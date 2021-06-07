@@ -134,6 +134,8 @@ All embellishments besides links are allowed to be nested.
 * `outputLocationIs`: path at which to generate the site. Defaults to `./imago`.
   * valid path string
 
+You can also check out an [example options.txt in the example blog](blog/options.txt).
+
 ## Contributing
 
 PRs aren't currently accepted, as the project is too new. If you'd like to enter into closer collaboration with me on Pupate, feel free to send me an email. If you have an idea or problem, feel free to make an issue or PR, but be prepared for it to be moved past for now.
