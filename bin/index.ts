@@ -16,6 +16,7 @@ switch (subcommand) {
     spawn()
     break
   case undefined:
+  case 'ecdysis':
     ecdysis()
     break
   default:
