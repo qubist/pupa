@@ -5,5 +5,5 @@ linkColorIs
 backgroundColorIs 
 showIndexWith 
 sortIndexBy 
-entryURLsBasedOn 
+pageURLsBasedOn 
 outputLocationIs 

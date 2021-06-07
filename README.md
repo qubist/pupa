@@ -127,7 +127,7 @@ All embellishments besides links are allowed to be nested.
   * `oldest`
   * `filename`
   * `title`
-* `entryURLsBasedOn`: how to derive the URLs for entry pages
+* `pageURLsBasedOn`: how to derive the URLs for entry pages
   * `title`
   * `filename`
   * `date`

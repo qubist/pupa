@@ -4,6 +4,6 @@ textColorIs initial
 linkColorIs revert
 backgroundColorIs initial
 showIndexWith dates
-sortIndexBy date
-entryURLsBasedOn filename
+sortIndexBy newest
+pageURLsBasedOn filename
 outputLocationIs ./imago/

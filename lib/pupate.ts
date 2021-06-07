@@ -49,39 +49,79 @@ function isPupateDir(): boolean {
   return ok
 }
 
-type Options = Record<string, string | undefined>
+type OptionsDict = Record<string, string>
 
-// Returns a dictionary of option-name: value pairs.
-function getOptions(): Options {
-  let optionsList: string[] = fs.readFileSync(OPTIONS_FILENAME).toString().split(/\r?\n/)
+// Inspects an options file and returns a dictionary of option-name:value pairs,
+// as long as the file is formatted right. Dictionary won't have entries for
+// options not listed in the file or without a value.
+function getOptionsDict(filename: Path): OptionsDict {
+  // get list of lines from file
+  let optionsList: string[] = fs.readFileSync(filename).toString().split(/\r?\n/)
 
   // check that the options file is formatted right
   if (!validOptionsFormat(optionsList)) {
-    throw colors.red('Options file not formatted properly')
+    throw colors.red(`Options file "${filename}" not formatted properly`)
   }
-  let optionsDict: Options = {}
+
+  let optionsDict: Record<string, string> = {}
   for (let o of optionsList) {
-    // Ignore whitespace or empty lines
-    if (/^\s*$/.test(o)) {
-      continue
+    // ignore whitespace or empty lines and ignore standalone option names
+    if (!/^\s*$/.test(o) && !/^[A-z]+$/.test(o.trim())) {
+      let optionName: string = o.substr(0,o.indexOf(' '))
+      let optionValue: string = o.substr(o.indexOf(' ')+1)
+      optionsDict[optionName] = optionValue
     }
-    // no value for standalone option names
-    if (/^[A-z]+$/.test(o.trim())) {
-      optionsDict[o.trim()] = undefined
-      continue
-    }
-    optionsDict[o.substr(0,o.indexOf(' '))] = o.substr(o.indexOf(' ')+1)
   }
 
-  // FIXME: apply default option values to any options that are undefined
-
-  // check that the values of all the options are resonable
-  let result: BooleanWithDetails = validOptionsValues(optionsDict)
-  if (!result.boolean) {
-    throw colors.red(`The following values in ${OPTIONS_FILENAME} were not valid: ${result.details}`)
+  // check that options have resonable values
+  var { boolean, details } = validOptionsValues(optionsDict)
+  if (!boolean) {
+      throw colors.red(`The following options in ${filename} were not valid: ${details}`);
   }
 
   return optionsDict
+}
+
+type CSSValue = string
+type Path = string
+type ShowIndexWithValue = 'dates' | 'noDates' | 'dont'
+type SortIndexByValue = 'newest' | 'oldest' | 'filename' | 'title'
+type PageURLsBasedOnValue = 'title' | 'filename' | 'date'
+
+interface Options {
+    font: CSSValue,
+    size: CSSValue,
+    textColor: CSSValue,
+    linkColor: CSSValue,
+    backgroundColor: CSSValue,
+    showIndexWith: ShowIndexWithValue,
+    sortIndexBy: SortIndexByValue,
+    pageURLsBasedOn: PageURLsBasedOnValue,
+    outputLocation: Path
+}
+
+function createOptions(optionsFile: Path): Options {
+  // we know user values are resonable at this point. Get them.
+  let userOptionsDict = getOptionsDict(optionsFile)
+  let defaultOptionsDict = getOptionsDict(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`))
+
+  // fill out options with user defined values if they exist, or fall back on
+  // defaults. userOptionsDict will return undefined if the key isn't found, in
+  // which case the || chooses the defaultOptionsDict version.
+  let options: Options = {
+    font: userOptionsDict['fontIs'] || defaultOptionsDict['fontIs'],
+    size: userOptionsDict['sizeIs'] || defaultOptionsDict['sizeIs'],
+    textColor: userOptionsDict['textColorIs'] || defaultOptionsDict['textColorIs'],
+    linkColor: userOptionsDict['linkColorIs'] || defaultOptionsDict['linkColorIs'],
+    backgroundColor: userOptionsDict['backgroundColorIs'] || defaultOptionsDict['backgroundColorIs'],
+    // these next strings get checked so we can assert them into values here
+    showIndexWith: (userOptionsDict['showIndexWith'] || defaultOptionsDict['showIndexWith']) as ShowIndexWithValue,
+    sortIndexBy: (userOptionsDict['sortIndexBy'] || defaultOptionsDict['sortIndexBy']) as SortIndexByValue,
+    pageURLsBasedOn: (userOptionsDict['pageURLsBasedOn'] || defaultOptionsDict['pageURLsBasedOn']) as PageURLsBasedOnValue,
+    outputLocation: (userOptionsDict['outputLocationIs'] || defaultOptionsDict['outputLocationIs']) as Path
+  }
+
+  return options
 }
 
 function validOptionsFormat(optionsList: string[]): boolean {
@@ -101,13 +141,46 @@ interface BooleanWithDetails {
   details: string | undefined
 }
 
-// Returns whether the option values were valid and possibly a string of the the
+// returns whether the option values were valid and possibly a string of the the
 // options values that were invalid.
-function validOptionsValues(_options: Options): BooleanWithDetails {
-  // FIXME
-  // e.g. "sortIndexBy" has to be 'newest' 'oldest' etc.
-  // also accept undefined!
-  return {boolean: true, details: undefined}
+function validOptionsValues(optionsDict: OptionsDict): BooleanWithDetails  {
+    let valid: boolean = true
+    let invalidValues: string[] = []
+
+    // showIndexWith
+    // If the option key is in the dict AND the value isn't in the list of good values
+    let okVals = ['dates', 'noDates', 'dont']
+    if (('showIndexWith' in optionsDict) && (!okVals.includes(optionsDict['showIndexWith']))) {
+      valid = false
+      invalidValues.push(`showIndexWith ${optionsDict['showIndexWith']}`)
+    }
+
+    // sortIndexBy
+    okVals = ['newest', 'oldest', 'filename', 'title']
+    if (('sortIndexBy' in optionsDict) && (!okVals.includes(optionsDict['sortIndexBy']))) {
+      valid = false
+      invalidValues.push(`sortIndexBy ${optionsDict['sortIndexBy']}`)
+    }
+
+    // pageURLsBasedOn
+    okVals = ['title', 'filename', 'date']
+    if (('pageURLsBasedOn' in optionsDict) && (!okVals.includes(optionsDict['pageURLsBasedOn']))) {
+      valid = false
+      invalidValues.push(`pageURLsBasedOn ${optionsDict['pageURLsBasedOn']}`)
+    }
+
+    let details: string | undefined
+    if (invalidValues.length == 0) {
+      // if there are no invalid values, details is undefined
+      details = undefined
+    } else {
+      details = invalidValues.join(', ')
+    }
+
+    return {
+      boolean: valid,
+      details
+    }
 }
 
 interface Entry {
@@ -124,8 +197,7 @@ export function ecdysis(): void {
   check()
 
   // get user-defined options
-  const options = getOptions()
-  console.log(options)
+  const options = createOptions(`./${OPTIONS_FILENAME}`)
 
   // make pageEntry objects from the text files in the entries directory
   let pageEntries: Entry[] = []
@@ -133,15 +205,8 @@ export function ecdysis(): void {
     pageEntries.push(makeEntry(`./larva/entries/${filepath}`))
   }
 
-  // set output location for the finished site
-  let outputLocation: string
-  if (options['outputLocationIs'] == undefined) {
-    // default output location is imago directory, level with larva
-    outputLocation = './imago'
-  } else {
-    outputLocation = options['outputLocationIs']
-  }
-
+  // set output location for the finished site, and make the directory if needed
+  let outputLocation: Path = options.outputLocation
   if (!fs.existsSync(outputLocation)) {
     fs.mkdirSync(outputLocation, {recursive: true})
   }
@@ -178,7 +243,7 @@ function makeEntry(path: string): Entry {
 }
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
-function createPage(entry: Entry, outputLocation: string, _options: Options): void {
+function createPage(entry: Entry, outputLocation: Path, _options: Options): void {
   let urlPart: string = entry.filename // FIXME use option to decide
 
   fs.mkdirSync(`${outputLocation}/${urlPart}`, {recursive: true})
@@ -190,7 +255,7 @@ function renderPage(entry: Entry): string {
   // read default page html from defaults folder
   let page: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/page.html')).toString()
 
-  // replace() documentation: If pattern is a string, only the first occurrence will be replaced.
+  // From replace() documentation: If pattern is a string, only the first occurrence will be replaced.
   // replace keywords in reverse order in the template so the replaced content can't interfere with the process
   page = page.replace(/CONTENT/, entry.content)
   page = page.replace(/DATESTRING/, entry.datestring)
@@ -201,7 +266,7 @@ function renderPage(entry: Entry): string {
 }
 
 // Creates the homepage by rendering it and outputing the file to the right location
-function createHomepage(entry: Entry, outputLocation: string, pageEntries: Entry[], options: Options): void {
+function createHomepage(entry: Entry, outputLocation: Path, pageEntries: Entry[], options: Options): void {
   fs.writeFileSync(`${outputLocation}/index.html`, renderHomepage(entry, pageEntries, options))
 }
 
@@ -213,10 +278,10 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
 
   // create index from list of page entries
   let index: string = ''
-  if (options['showIndexWith'] != 'dont') { // if we should actually make an index
+  if (options.showIndexWith != 'dont') { // if we should actually make an index
     // decide from options how to sort the index
     let sortFunction
-    switch (options['sortIndexBy']) {
+    switch (options.sortIndexBy) {
       case 'newest':
         sortFunction = (a: Entry, b: Entry): number => a.datestring.localeCompare(b.datestring)
         break
@@ -229,7 +294,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
       case 'title':
         sortFunction = (a: Entry, b: Entry): number => a.title.localeCompare(b.title)
         break
-      // validOptionsValues should catch anything else, so no default needed
+      // checks should catch anything else, so no default needed
     }
 
     // decide from options how to display the index
@@ -237,13 +302,20 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     //  - with the proper links
     console.log(pageEntries)
     console.log(pageEntries.sort(sortFunction))
+    // FIXME sorting broken
     for (const entry of pageEntries.sort(sortFunction)) {
       // get the link that will lead to the entry's page
       let entryLink
-      if (options['entryURLsBasedOn'] == 'title') {
-        entryLink = entry.title
-      } else {
-        entryLink = entry.filename
+      switch (options.pageURLsBasedOn) {
+        case 'title':
+          entryLink = entry.title
+          break
+        case 'filename':
+          entryLink = entry.filename
+          break
+        case 'date':
+          entryLink = entry.datestring
+          break
       }
 
       if (options['showIndexWith'] == 'dates') {
@@ -265,21 +337,21 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
   return homepage
 }
 
-function createStylesheet(outputLocation: string, options: Options) {
-  fs.writeFileSync(`${outputLocation}/styles.css`, renderStylesheet(outputLocation, options))
+function createStylesheet(outputLocation: Path, options: Options) {
+  fs.writeFileSync(`${outputLocation}/styles.css`, renderStylesheet(options))
 }
 
-function renderStylesheet(outputLocation: string, options: Options): string {
+function renderStylesheet(options: Options): string {
   // bring in template homepage from defaults folder
   let stylesheet: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/styles.css')).toString()
 
   // replace keywords in styles template, bottom to top
   // FIXME: options should mabe be an interface? needs work
-  stylesheet = stylesheet.replace(/LINKCOLOR/, options['linkColorIs'])
-  stylesheet = stylesheet.replace(/BACKGROUNDCOLOR/, options['backgroundColorIs'])
-  stylesheet = stylesheet.replace(/TEXTCOLOR/, options['textColorIs'])
-  stylesheet = stylesheet.replace(/FONTSIZE/, options['sizeIs'])
-  stylesheet = stylesheet.replace(/FONTFAMILY/, options['fontIs'])
+  stylesheet = stylesheet.replace(/LINKCOLOR/, options.linkColor)
+  stylesheet = stylesheet.replace(/BACKGROUNDCOLOR/, options.backgroundColor)
+  stylesheet = stylesheet.replace(/TEXTCOLOR/, options.textColor)
+  stylesheet = stylesheet.replace(/FONTSIZE/, options.size)
+  stylesheet = stylesheet.replace(/FONTFAMILY/, options.font)
 
   return stylesheet
 }
