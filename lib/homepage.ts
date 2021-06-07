@@ -42,7 +42,6 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     //  - with the proper links
     console.log(pageEntries)
     console.log(pageEntries.sort(sortFunction))
-    // FIXME sorting broken
     for (const entry of pageEntries.sort(sortFunction)) {
       // get the link that will lead to the entry's page
       let entryLink
