@@ -1,27 +1,22 @@
 #!/usr/bin/env node
 
-import * as pupate from '../lib/pupate'
+import { check, spawn, ecdysis } from '../lib/pupate'
 import * as colors from 'colors'
 
 // print welcome
-console.log(
-  colors.green(
-    // returns the random greeting text
-    pupate.welcome()
-  )
-)
+console.log(colors.green('Welcome to Pupate!'))
 
 let subcommand = process.argv.splice(2)[0]
 
 switch (subcommand) {
   case 'check':
-    pupate.check()
+    check()
     break
   case 'spawn':
-    pupate.spawn()
+    spawn()
     break
   case undefined:
-    pupate.ecdysis()
+    ecdysis()
     break
   default:
     console.log(colors.red(`Unrecognized subcommand "${subcommand}"`))

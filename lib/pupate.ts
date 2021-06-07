@@ -8,11 +8,6 @@ import { createStylesheet } from './stylesheet'
 import { createHomepage } from './homepage'
 import { Entry, makeEntry } from './entry'
 
-// Return a welcome message
-export function welcome(): string {
-  return 'Welcome to Pupate!'
-}
-
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
   console.log(colors.green('Spawning...'))
