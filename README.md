@@ -6,6 +6,8 @@ Simple static site generator for text-only blogs that invites code-injection as 
 
 ## Background
 
+Rock-simple but allowing a lot of creativity via HTML injection
+
 ## Install
 
 ### Requirements
@@ -139,6 +141,36 @@ You can also check out an [example options.txt in the example blog](/example%20b
 ## Contributing
 
 PRs aren't currently accepted, as the project is too new. If you'd like to enter into closer collaboration with me on Pupate, feel free to send me an email. If you have an idea or problem, feel free to make an issue or PR, but be prepared for it to be moved past for now.
+
+### Developing
+
+clone repo
+
+Install typescript stuff if you need it
+
+```shell
+sudo apt install node-typescript
+```
+
+Install types
+
+```shell
+npm i @types/node
+```
+
+Complile the TypeScript to JavaScript for the first time
+
+```shell
+npm run build
+```
+
+Install so you can use the command globally
+
+```shell
+sudo npm install -g ./
+```
+
+Run `npm run build` after making changes to the `.ts` files.
 
 ## License
 
