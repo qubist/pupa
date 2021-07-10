@@ -42,11 +42,12 @@ pupate
 
 ### Editing entries
 
-Each entry is a single text file in the `larva/entries` directory. The first line in the file is the title. The second line is the date. All lines after that are the body of the entry. Each entry becomes a page in the generated site.
+Each entry is a single text file in the `larva/entries` directory. The first line in the file is the title. The second line is the date. Then there's a blank line. All lines after that are the body of the entry. Each entry becomes a page in the generated site.
 
 ```
 How I make soup
 2021/03/04
+
 This is a post with my meta-soup-making recipe. First, make the soup.
 ```
 
