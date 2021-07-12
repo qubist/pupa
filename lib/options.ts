@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as colors from 'colors'
+import 'colors'
 import * as path from 'path'
 
 import { OPTIONS_FILENAME } from './consts'
@@ -15,7 +15,7 @@ function getOptionsDict(filename: string): OptionsDict {
 
   // check that the options file is formatted right
   if (!validOptionsFormat(optionsList)) {
-    throw colors.red(`Options file "${filename}" not formatted properly`)
+    throw `Options file not formatted properly: ${filename.reset}`.red
   }
 
   let optionsDict: Record<string, string> = {}
@@ -31,8 +31,8 @@ function getOptionsDict(filename: string): OptionsDict {
   // check that options have resonable values
   var { boolean, maybeDetails } = validOptionsValues(optionsDict)
   if (!boolean) {
-      throw colors.red(`The following options in ${filename} were not valid: ${details}`);
       let details: string = maybeDetails as string
+      throw ('The following options in '.red + filename.reset + ' were not valid: '.red + details)
   }
 
   return optionsDict

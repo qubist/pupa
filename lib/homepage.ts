@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
-import * as colors from 'colors'
+import 'colors'
 
 import { Options } from './options'
 import { Entry } from './entry'
@@ -61,7 +61,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
       } else if (options['showIndexWith'] == 'noDates') {
         index += `<a href="${entryLink}">${entry.title}</a>\n`
       } else {
-        throw colors.red('Unknown value for showIndexWith option')
+        throw 'Unknown value for showIndexWith option'.red
       }
     }
   }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { check, spawn, ecdysis } from '../lib/pupate'
-import * as colors from 'colors'
+import 'colors'
 
 // print welcome
-console.log(colors.green('Welcome to Pupate!'))
+console.log('Welcome to Pupate!'.blue)
 
 let subcommand = process.argv.splice(2)[0]
 
@@ -20,5 +20,5 @@ switch (subcommand) {
     ecdysis()
     break
   default:
-    console.log(colors.red(`Unrecognized subcommand "${subcommand}"`))
+    console.error('Unrecognized subcommand:'.red, subcommand)
 }

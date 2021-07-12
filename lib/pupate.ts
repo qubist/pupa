@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as colors from 'colors'
+import 'colors'
 import * as path from 'path'
 
 import { OPTIONS_FILENAME, HOMEPAGE_FILENAME } from './consts'
@@ -11,7 +11,7 @@ import { embellish } from './embellish'
 
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
-  console.log(colors.green('Spawning...'))
+  console.info('Spawning...'.cyan)
   if (!fs.existsSync('larva')) {
     fs.mkdirSync('larva')
   }
@@ -27,12 +27,12 @@ export function spawn(): void {
     fs.copyFileSync(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`), `./${OPTIONS_FILENAME}`)
   }
 
-  console.log(colors.green('Spawning finished!'))
+  console.info('Spawning finished!'.green)
 }
 
 export function check(): void {
   if (!isPupateDir()) {
-    throw colors.red('Not a Pupate-shaped directory')
+    throw 'Not a Pupate-shaped directory'.red
   }
 }
 
@@ -42,14 +42,14 @@ function isPupateDir(): boolean {
   for (const path of requiredPaths) {
     if (!fs.existsSync(path)) {
       ok = false
-      console.warn(colors.yellow('Missing path:'), path)
+      console.warn(`Missing path: ${path.reset}`.yellow)
     }
   }
   return ok
 }
 
 export function ecdysis(): void {
-  console.log(colors.green('Molting...'))
+  console.info('Molting...'.cyan)
 
   // make sure current directory is Pupate-shaped
   check()
@@ -80,6 +80,8 @@ export function ecdysis(): void {
 
   // create stylesheet
   createStylesheet(outputLocation, options)
+
+  console.info(`Molted! New imago lives at: ${outputLocation.reset}`.green)
 }
 
 function isTxt(filepath: string): boolean {
