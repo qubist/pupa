@@ -87,7 +87,7 @@ First, add {red}(red) and {green}(#00ff00) apples.
 ```
 
 ```html
-First, add <span class="color: red">red</span> and <span class="color: #00ff00">green</span> apples.
+First, add <span style="color: red">red</span> and <span style="color: #00ff00">green</span> apples.
 ```
 
 First, add red and green apples. (but imagine the text is colored)

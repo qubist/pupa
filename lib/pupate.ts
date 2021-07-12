@@ -7,6 +7,7 @@ import { createOptions, Options } from './options'
 import { createStylesheet } from './stylesheet'
 import { createHomepage } from './homepage'
 import { Entry, makeEntry } from './entry'
+import { embellish } from './embellish'
 
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
@@ -97,13 +98,12 @@ function createPage(entry: Entry, outputLocation: string, _options: Options): vo
 function renderPage(entry: Entry): string {
   // read default page html from defaults folder
   let page: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/page.html')).toString()
-
-  // From replace() documentation: If pattern is a string, only the first occurrence will be replaced.
-  // replace keywords in reverse order in the template so the replaced content can't interfere with the process
-  page = page.replace(/CONTENT/, entry.content)
-  page = page.replace(/DATESTRING/, entry.datestring)
-  page = page.replace(/TITLEBODY/, entry.title)
-  page = page.replace(/TITLE/, entry.title)
+  // Replace keywords in reverse order in the template so the replaced content
+  // can't interfere with the process (only first occurence is replaced)
+  page = page.replace(/CONTENT/, embellish(entry.content))
+             .replace(/DATESTRING/, entry.datestring)
+             .replace(/TITLEBODY/, embellish(entry.title))
+             .replace(/TITLE/, entry.title)
 
   return page
 }

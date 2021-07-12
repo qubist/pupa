@@ -4,6 +4,7 @@ import * as colors from 'colors'
 
 import { Options } from './options'
 import { Entry } from './entry'
+import { embellish } from './embellish'
 
 // Creates the homepage by rendering it and outputing the file to the right location
 export function createHomepage(entry: Entry, outputLocation: string, pageEntries: Entry[], options: Options): void {
@@ -40,8 +41,6 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     // decide from options how to display the index
     //  - with or without dates
     //  - with the proper links
-    console.log(pageEntries)
-    console.log(pageEntries.sort(sortFunction))
     for (const entry of pageEntries.sort(sortFunction)) {
       // get the link that will lead to the entry's page
       let entryLink
