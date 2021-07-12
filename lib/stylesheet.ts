@@ -13,10 +13,10 @@ function renderStylesheet(options: Options): string {
 
   // replace keywords in styles template, bottom to top
   stylesheet = stylesheet.replace(/LINKCOLOR/, options.linkColor)
-  stylesheet = stylesheet.replace(/BACKGROUNDCOLOR/, options.backgroundColor)
-  stylesheet = stylesheet.replace(/TEXTCOLOR/, options.textColor)
-  stylesheet = stylesheet.replace(/FONTSIZE/, options.size)
-  stylesheet = stylesheet.replace(/FONTFAMILY/, options.font)
+                         .replace(/BACKGROUNDCOLOR/, options.backgroundColor)
+                         .replace(/TEXTCOLOR/, options.textColor)
+                         .replace(/FONTSIZE/, options.size)
+                         .replace(/FONTFAMILY/, options.font)
 
   return stylesheet
 }
