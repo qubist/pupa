@@ -4,6 +4,8 @@ import * as fs from 'fs'
 import { Options } from './options'
 
 export function createStylesheet(outputLocation: string, options: Options) {
+  console.debug('Creating stylesheet'.white)
+  
   fs.writeFileSync(`${outputLocation}/styles.css`, renderStylesheet(options))
 }
 

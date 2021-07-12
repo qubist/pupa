@@ -8,6 +8,8 @@ import { embellish } from './embellish'
 
 // Creates the homepage by rendering it and outputing the file to the right location
 export function createHomepage(entry: Entry, outputLocation: string, pageEntries: Entry[], options: Options): void {
+  console.debug('Creating homepage'.white)
+  
   fs.writeFileSync(`${outputLocation}/index.html`, renderHomepage(entry, pageEntries, options))
 }
 

@@ -90,6 +90,8 @@ function isTxt(filepath: string): boolean {
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
 function createPage(entry: Entry, outputLocation: string, _options: Options): void {
+  console.debug(`Creating page: ${entry.filename.reset}`.white)
+
   let urlPart: string = entry.filename // FIXME use option to decide
 
   fs.mkdirSync(`${outputLocation}/${urlPart}`, {recursive: true})
