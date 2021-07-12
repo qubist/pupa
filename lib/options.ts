@@ -29,9 +29,10 @@ function getOptionsDict(filename: string): OptionsDict {
   }
 
   // check that options have resonable values
-  var { boolean, details } = validOptionsValues(optionsDict)
+  var { boolean, maybeDetails } = validOptionsValues(optionsDict)
   if (!boolean) {
       throw colors.red(`The following options in ${filename} were not valid: ${details}`);
+      let details: string = maybeDetails as string
   }
 
   return optionsDict
@@ -92,7 +93,7 @@ function validOptionsFormat(optionsList: string[]): boolean {
 
 interface BooleanWithDetails {
   boolean: boolean,
-  details: string | undefined
+  maybeDetails: string | undefined
 }
 
 // returns whether the option values were valid and possibly a string of the the
@@ -123,16 +124,16 @@ function validOptionsValues(optionsDict: OptionsDict): BooleanWithDetails  {
       invalidValues.push(`pageURLsBasedOn ${optionsDict['pageURLsBasedOn']}`)
     }
 
-    let details: string | undefined
+    let maybeDetails: string | undefined
     if (invalidValues.length == 0) {
       // if there are no invalid values, details is undefined
-      details = undefined
+      maybeDetails = undefined
     } else {
-      details = invalidValues.join(', ')
+      maybeDetails = invalidValues.join(', ')
     }
 
     return {
       boolean: valid,
-      details
+      maybeDetails
     }
 }
