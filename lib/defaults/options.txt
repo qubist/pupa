@@ -1,5 +1,5 @@
 fontIs monospace
-sizeIs 15px
+sizeIs 16px
 textColorIs initial
 linkColorIs revert
 backgroundColorIs initial
