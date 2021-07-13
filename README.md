@@ -42,7 +42,7 @@ pupate
 
 ### Editing entries
 
-Each entry is a single text file in the `larva/entries` directory. The first line in the file is the title. The second line is the date. Then there's a blank line. All lines after that are the body of the entry. Each entry becomes a page in the generated site.
+Each entry is a single text file in the `larva/entries` directory. The first line in the file is the title. The second line is the date. Then there's an optional empty line. All lines after that are the body of the entry. Each entry becomes a page in the generated site.
 
 ```
 How I make soup
@@ -65,7 +65,7 @@ Chicken soup is *not* vegetarian.
 ```
 
 ```html
-Chicken soup is <strong>not</strong> vegetarian.
+Chicken soup is <b>not</b> vegetarian.
 ```
 
 Chicken soup is **not** vegetarian.
