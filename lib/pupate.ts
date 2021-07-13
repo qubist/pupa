@@ -7,7 +7,7 @@ import { createOptions, Options } from './options'
 import { createStylesheet } from './stylesheet'
 import { createHomepage } from './homepage'
 import { Entry, makeEntry } from './entry'
-import { embellish } from './embellish'
+import { embellish, unembellish } from './embellish'
 
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
@@ -108,7 +108,7 @@ function renderPage(entry: Entry): string {
   page = page.replace(/CONTENT/, embellish(entry.content))
              .replace(/DATESTRING/, entry.datestring)
              .replace(/BODYTITLE/, embellish(entry.title))
-             .replace(/TITLE/, entry.title)
+             .replace(/TITLE/, unembellish(entry.title))
 
   return page
 }

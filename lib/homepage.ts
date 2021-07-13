@@ -58,10 +58,12 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
           break
       }
 
+      // NOTE: Potentially change embellish below to unembellish if unembellished index is better?
+      //       or add an option for this
       if (options['showIndexWith'] == 'dates') {
-        index += `${entry.datestring} <a href="${entryLink}">${entry.title}</a>\n`
+        index += `${entry.datestring} <a href="${entryLink}">${embellish(entry.title)}</a>\n`
       } else if (options['showIndexWith'] == 'noDates') {
-        index += `<a href="${entryLink}">${entry.title}</a>\n`
+        index += `<a href="${entryLink}">${embellish(entry.title)}</a>\n`
       } else {
         throw 'Unknown value for showIndexWith option'.red
       }
@@ -72,7 +74,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
   homepage = homepage.replace(/INDEX/, index)
                      .replace(/CONTENT/, embellish(entry.content))
                      .replace(/BODYTITLE/, embellish(entry.title))
-                     .replace(/TITLE/, entry.title)
+                     .replace(/TITLE/, unembellish(entry.title))
 
   return homepage
 }
