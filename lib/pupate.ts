@@ -106,7 +106,7 @@ function renderPage(entry: Entry): string {
   // can't interfere with the process (only first occurence is replaced)
   page = page.replace(/CONTENT/, embellish(entry.content))
              .replace(/DATESTRING/, entry.datestring)
-             .replace(/TITLEBODY/, embellish(entry.title))
+             .replace(/BODYTITLE/, embellish(entry.title))
              .replace(/TITLE/, entry.title)
 
   return page

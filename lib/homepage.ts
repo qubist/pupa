@@ -71,7 +71,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
   // replace keywords in homepage template, bottom to top
   homepage = homepage.replace(/INDEX/, index)
                      .replace(/CONTENT/, embellish(entry.content))
-                     .replace(/TITLEBODY/, embellish(entry.title))
+                     .replace(/BODYTITLE/, embellish(entry.title))
                      .replace(/TITLE/, entry.title)
 
   return homepage
