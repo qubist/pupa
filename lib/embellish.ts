@@ -1,6 +1,5 @@
-// import { createStylesheet } from './stylesheet'
 
-// Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
+// Modifies text, adding HTML in place of Pupate embellishment markup
 export function embellish(text: string): string {
   return text
     .replace(/\*(\S(.*?\S)?)\*/isg, "<b>$1</b>")

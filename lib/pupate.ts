@@ -80,6 +80,7 @@ export function ecdysis(): void {
 
   // create stylesheet
   createStylesheet(outputLocation, options)
+  console.info(`Wrote ${pageEntries.length + 2} files`.cyan)
 
   console.info(`Molted! New imago lives at: ${outputLocation.reset}`.green)
 }

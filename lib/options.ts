@@ -69,7 +69,7 @@ export function createOptions(optionsFile: string): Options {
     textColor: userOptionsDict['textColorIs'] || defaultOptionsDict['textColorIs'],
     linkColor: userOptionsDict['linkColorIs'] || defaultOptionsDict['linkColorIs'],
     backgroundColor: userOptionsDict['backgroundColorIs'] || defaultOptionsDict['backgroundColorIs'],
-    // these next strings get checked so we can assert them into values here
+    // these next strings are checked, so we can use type assertion here
     showIndexWith: (userOptionsDict['showIndexWith'] || defaultOptionsDict['showIndexWith']) as ShowIndexWithValue,
     sortIndexBy: (userOptionsDict['sortIndexBy'] || defaultOptionsDict['sortIndexBy']) as SortIndexByValue,
     pageURLsBasedOn: (userOptionsDict['pageURLsBasedOn'] || defaultOptionsDict['pageURLsBasedOn']) as PageURLsBasedOnValue,
