@@ -1,9 +1,9 @@
-fontIs 
-sizeIs 
-textColorIs 
-linkColorIs 
-backgroundColorIs 
-showIndexWith 
-sortIndexBy 
-pageURLsBasedOn 
-outputLocationIs 
+fontIs
+sizeIs
+textColorIs #adbac7
+linkColorIs #cfddea
+backgroundColorIs #22272e
+showIndexWith
+sortIndexBy
+pageURLsBasedOn
+outputLocationIs

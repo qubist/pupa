@@ -1,0 +1,12 @@
+*CSS test*
+2021/03/04
+
+This is a <span style="text-decoration: underline">test</span> of css {soup-making}(#23aa42) recipe. First, do <span class="special-word">something</span>.
+
+{testing css variables}(var(--special-color)) and more!
+
+<style>.special-word{color: red;}</style>
+<style>
+  body {
+    --special-color: magenta;
+  }
