@@ -30,9 +30,12 @@ export function spawn(): void {
   console.info('Spawning finished!'.green)
 }
 
-export function check(): void {
+export function check(quiet = true): void {
   if (!isPupateDir()) {
     throw 'Not a Pupate-shaped directory'.red
+  }
+  if (!quiet) {
+    console.info('Current directory is Pupate-shaped!'.green)
   }
 }
 

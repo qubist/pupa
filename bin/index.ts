@@ -21,7 +21,8 @@ let subcommand = process.argv.splice(2)[0]
 
 switch (subcommand) {
   case 'check':
-    check()
+    // Check if directory is Pupate-shaped with param quiet = false
+    check(false)
     break
   case 'spawn':
     spawn()
