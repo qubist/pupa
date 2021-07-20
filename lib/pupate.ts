@@ -42,7 +42,7 @@ function isPupateDir(): boolean {
   for (const path of requiredPaths) {
     if (!fs.existsSync(path)) {
       ok = false
-      console.warn(`Missing path: ${path.reset}`.yellow)
+      console.warn(`WARNING! Missing path: ${path.reset}`.yellow)
     }
   }
   return ok
