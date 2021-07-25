@@ -8,6 +8,7 @@ import { createStylesheet } from './stylesheet'
 import { createHomepage } from './homepage'
 import { Entry, makeEntry } from './entry'
 import { embellish, unembellish } from './embellish'
+import { getSlug } from './slugs'
 
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
@@ -113,13 +114,13 @@ function clear(location: string): void {
 }
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
-function createPage(entry: Entry, outputLocation: string, _options: Options): void {
+function createPage(entry: Entry, outputLocation: string, options: Options): void {
   console.debug(`Creating page: ${entry.filename.reset}`.white)
 
-  let urlPart: string = entry.filename // FIXME use option to decide
+  let slug = getSlug(entry, options.pageURLsBasedOn)
 
-  fs.mkdirSync(path.resolve(outputLocation, urlPart), {recursive: true})
-  fs.writeFileSync(path.resolve(outputLocation, urlPart, 'index.html'), renderPage(entry))
+  fs.mkdirSync(path.resolve(outputLocation, slug), {recursive: true})
+  fs.writeFileSync(path.resolve(outputLocation, slug, 'index.html'), renderPage(entry))
 }
 
 // Renders an Entry into a Page (html string)

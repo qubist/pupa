@@ -5,6 +5,7 @@ import 'colors'
 import { Options } from './options'
 import { Entry } from './entry'
 import { embellish, unembellish } from './embellish'
+import { getSlug } from './slugs'
 
 // Creates the homepage by rendering it and outputing the file to the right location
 export function createHomepage(entry: Entry, outputLocation: string, pageEntries: Entry[], options: Options): void {
@@ -45,25 +46,14 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     //  - with the proper links
     for (const entry of pageEntries.sort(sortFunction)) {
       // get the link that will lead to the entry's page
-      let entryLink
-      switch (options.pageURLsBasedOn) {
-        case 'title':
-          entryLink = entry.title
-          break
-        case 'filename':
-          entryLink = entry.filename
-          break
-        case 'date':
-          entryLink = entry.datestring
-          break
-      }
+      let slug = getSlug(entry, options.pageURLsBasedOn)
 
       // NOTE: Potentially change embellish below to unembellish if unembellished index is better?
       //       or add an option for this
       if (options['showIndexWith'] == 'dates') {
-        index += `${entry.datestring} <a href="${entryLink}">${embellish(entry.title)}</a>\n`
+        index += `${entry.datestring} <a href="${slug}">${embellish(entry.title)}</a>\n`
       } else if (options['showIndexWith'] == 'noDates') {
-        index += `<a href="${entryLink}">${embellish(entry.title)}</a>\n`
+        index += `<a href="${slug}">${embellish(entry.title)}</a>\n`
       } else {
         throw 'Unknown value for showIndexWith option'.red
       }

@@ -41,7 +41,7 @@ function getOptionsDict(filename: string): OptionsDict {
 type CSSValue = string
 type ShowIndexWithValue = 'dates' | 'noDates' | 'dont'
 type SortIndexByValue = 'newest' | 'oldest' | 'filename' | 'title'
-type PageURLsBasedOnValue = 'title' | 'filename' | 'date'
+export type PageURLsBasedOnValue = 'title' | 'filename' | 'date'
 
 export interface Options {
     font: CSSValue,
