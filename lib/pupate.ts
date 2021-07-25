@@ -60,16 +60,19 @@ export function ecdysis(): void {
   // get user-defined options
   const options = createOptions(`./${OPTIONS_FILENAME}`)
 
-  // make pageEntry objects from the text files in the entries directory
-  let pageEntries: Entry[] = []
-  for (const filepath of fs.readdirSync('./larva/entries').filter(isTxt)) {
-    pageEntries.push(makeEntry(`./larva/entries/${filepath}`))
-  }
-
   // set output location for the finished site, and make the directory if needed
   let outputLocation: string = options.outputLocation
   if (!fs.existsSync(outputLocation)) {
     fs.mkdirSync(outputLocation, {recursive: true})
+  }
+
+  // clear output directory for a fresh rebuild
+  clear(outputLocation)
+
+  // make pageEntry objects from the text files in the entries directory
+  let pageEntries: Entry[] = []
+  for (const filepath of fs.readdirSync('./larva/entries').filter(isTxt)) {
+    pageEntries.push(makeEntry(`./larva/entries/${filepath}`))
   }
 
   // create pages
@@ -90,6 +93,23 @@ export function ecdysis(): void {
 
 function isTxt(filepath: string): boolean {
   return filepath.endsWith('.txt')
+}
+
+// Clear a directory of all files and folders, and move everything into a hidden
+// backup directory
+function clear(location: string): void {
+  console.debug('Clearing the output directory ('.white + location.reset + ') to ensure a fresh rebuild'.white)
+
+  let backupLocation = path.resolve(__dirname, '../../.imagobackup')
+  for (let file of fs.readdirSync(location)) {
+    let origFilepath = path.resolve(location, file)
+    let backupFilepath = path.resolve(backupLocation, file)
+    // remove any pre-existing file with the same name (so basicaclly overwrite)
+    fs.rmSync(backupFilepath, {recursive: true, force: true})
+    fs.renameSync(origFilepath, backupFilepath)
+  }
+
+  console.debug(`Deleted files backed up to ${backupLocation.reset}`.white)
 }
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
