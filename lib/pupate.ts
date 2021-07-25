@@ -98,8 +98,8 @@ function createPage(entry: Entry, outputLocation: string, _options: Options): vo
 
   let urlPart: string = entry.filename // FIXME use option to decide
 
-  fs.mkdirSync(`${outputLocation}/${urlPart}`, {recursive: true})
-  fs.writeFileSync(`${outputLocation}/${urlPart}/index.html`, renderPage(entry))
+  fs.mkdirSync(path.resolve(outputLocation, urlPart), {recursive: true})
+  fs.writeFileSync(path.resolve(outputLocation, urlPart, 'index.html'), renderPage(entry))
 }
 
 // Renders an Entry into a Page (html string)
