@@ -99,7 +99,7 @@ function isTxt(filepath: string): boolean {
 // Clear a directory of all files and folders, and move everything into a hidden
 // backup directory
 function clear(location: string): void {
-  console.debug('Clearing the output directory ('.white + location.reset + ') to ensure a fresh rebuild'.white)
+  console.debug('Clearing the output directory '.white + location.reset + ' to ensure a fresh rebuild'.white)
 
   let backupLocation = path.resolve(__dirname, '../../.imagobackup')
   for (let file of fs.readdirSync(location)) {
