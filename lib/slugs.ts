@@ -21,10 +21,13 @@ export function getSlug(entry: Entry, basedOn: PageURLsBasedOnValue): string {
   switch (basedOn) {
     case 'title':
       slug = slugify(entry.title, basedOn)
+      break
     case 'filename':
       slug = slugify(entry.filename, basedOn)
+      break
     case 'date':
       slug = slugify(entry.datestring, basedOn)
+      break
     // Can't be anything else
   }
   return slug
