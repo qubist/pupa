@@ -115,9 +115,9 @@ function clear(location: string): void {
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
 function createPage(entry: Entry, outputLocation: string, options: Options): void {
-  console.debug(`Creating page: ${entry.filename.reset}`.white)
-
   let slug = getSlug(entry, options.pageURLsBasedOn)
+
+  console.debug('Creating page '.white + entry.filename.reset + ' in '.white + path.resolve(outputLocation, slug).reset)
 
   fs.mkdirSync(path.resolve(outputLocation, slug), {recursive: true})
   fs.writeFileSync(path.resolve(outputLocation, slug, 'index.html'), renderPage(entry))
