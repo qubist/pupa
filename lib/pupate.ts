@@ -77,21 +77,7 @@ export function ecdysis(): void {
   }
 
   // create pages, careful not to reuse slugs
-  let usedSlugs: string[] = []
-  pageEntries.reverse()
-  for (let i = pageEntries.length - 1; i >= 0; i--) {
-    const pageEntry = pageEntries[i]
-
-    let currentSlug = getSlug(pageEntry, options.pageURLsBasedOn)
-    if (usedSlugs.includes(currentSlug)) {
-      console.warn('WARNING! The page for entry '.yellow + unembellish(pageEntry.title).reset + ' would have generated with the same URL (ending in '.yellow + currentSlug.reset + ') as an already-generated page. Skipping creation of this page! Disambiguate the '.yellow + options.pageURLsBasedOn.yellow + ' of the entry to have this page created.'.yellow)
-      pageEntries.splice(i, 1); // remove current entry so it's skipped later
-    } else {
-      createPage(pageEntry, outputLocation, options)
-      usedSlugs.push(currentSlug)
-    }
-  }
-  pageEntries.reverse()
+  createPages(pageEntries, options)
 
   // create homepage
   let homepageEntry = makeEntry('./larva/homepage.txt')
@@ -147,4 +133,24 @@ function renderPage(entry: Entry): string {
              .replace(/TITLE/, unembellish(entry.title))
 
   return page
+}
+
+function createPages(pageEntries: Entry[], options: Options) {
+  let usedSlugs: string[] = []
+
+  // iterate through all entries backwards so we can remove while iterating
+  pageEntries.reverse() // but reverse it first to preserve order
+  for (let i = pageEntries.length - 1; i >= 0; i--) {
+    const pageEntry = pageEntries[i]
+
+    let currentSlug = getSlug(pageEntry, options.pageURLsBasedOn)
+    if (usedSlugs.includes(currentSlug)) {
+      console.warn('WARNING! The page for entry '.yellow + unembellish(pageEntry.title).reset + ' would have generated with the same URL (ending in '.yellow + currentSlug.reset + ') as an already-generated page. Skipping creation of this page! Disambiguate the '.yellow + options.pageURLsBasedOn.yellow + ' of the entry so Pupate can create this page.'.yellow)
+      pageEntries.splice(i, 1); // remove current entry so it's skipped later
+    } else {
+      createPage(pageEntry, options.outputLocation, options)
+      usedSlugs.push(currentSlug)
+    }
+  }
+  pageEntries.reverse() // put the order back to normal
 }
