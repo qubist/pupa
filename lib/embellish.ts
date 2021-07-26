@@ -10,7 +10,7 @@ export function embellish(text: string): string {
 
 // paralel function to embellish above, but removing Pupate embellishment markup
 // so the text can be used as plain text, e.g. the document title (label in tab)
-export function unembellish(text: string): string{
+export function unembellish(text: string): string {
   return text
     .replace(/\*(\S(.*?\S)?)\*/isg, "$1")
     .replace(/\_(\S(.*?\S)?)\_/isg, "$1")
