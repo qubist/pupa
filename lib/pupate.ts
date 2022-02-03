@@ -108,7 +108,7 @@ function clear(location: string): void {
     fs.renameSync(origFilepath, backupFilepath)
   }
 
-  console.debug(`Deleted files backed up to ${backupLocation.reset}`.white)
+  console.debug(`(The cleared files were backed up to ${backupLocation.reset})`.white)
 }
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
