@@ -5,9 +5,9 @@ import { unembellish } from './embellish'
 
 // Make a title, filename, or date ready to be part of an entry URL
 function slugify(value: string, form: PageURLsBasedOnValue): string {
-  value = value.replace(/^\s+|\s+$/g, '')
+  value = value.replace(/^\s+|\s+$/g, '') // remove trailing and leading whitespace
   .toLowerCase()
-  .replace(/\s+|[/_;:,? '"*()[\]{}!]/g, '-') // remove invalid characters
+  .replace(/\s+|[/_;:,? '"*()[\]{}!]/g, '-') // replace invalid characters with dashes
   .replace(/-+/g, '-') // collapse dashes
   .replace(/^-|-$/g, '') // remove leading/trailing dashes
 
