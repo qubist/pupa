@@ -112,15 +112,15 @@ All embellishments besides links are allowed to be nested.
 `larva/options.txt` defines options for the whole site. Each line contains a one-word option name followed by a space followed by the value for that option. Here are all the options, their description, and available values:
 
 * `fontIs`: font family for text on the site
-  * arbitrary CSS
+  * arbitrary CSS value (only web-safe fonts work I think?)
 * `sizeIs`: font size for text
-  * arbitrary CSS
+  * arbitrary CSS value
 * `textColorIs`: default color for all text
-  * arbitrary CSS
+  * arbitrary CSS value
 * `linkColorIs`: default color for links
-  * arbitrary CSS
+  * arbitrary CSS value
 * `backgroundColorIs`: background color for all pages
-  * arbitrary CSS
+  * arbitrary CSS value
 * `showIndexWith`: how or whether to display the index of site pages
   * `dates` (display each page's title with its date)
   * `noDates` (display each page's title only)
