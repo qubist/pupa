@@ -3,7 +3,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-import { check, spawn, ecdysis } from '../lib/pupate'
+import { check, spawn, eclose } from '../lib/pupate'
 import 'colors'
 
 // print welcome
@@ -28,8 +28,8 @@ switch (subcommand) {
     spawn()
     break
   case undefined:
-  case 'ecdysis':
-    ecdysis()
+  case 'eclose':
+    eclose()
     break
   default:
     console.error('Unrecognized subcommand:'.red, subcommand)

@@ -52,8 +52,8 @@ function isPupateDir(): boolean {
   return ok
 }
 
-export function ecdysis(): void {
-  console.info('Molting...'.cyan)
+export function eclose(): void {
+  console.info('Emerging...'.cyan)
 
   // make sure current directory is Pupate-shaped
   check()

@@ -51,9 +51,10 @@ How I make soup
 This is a post with my meta-soup-making recipe. First, make the soup.
 ```
 
-### Ecdysis (Generating a site)
+### [Eclosion](https://en.wikipedia.org/wiki/Pupa#Emergence) (Generating a site)
 
-Run something to generate CSS and HTML in the `imago` directory based on the contents of the `larva` directory.
+In a pupate directory, run `pupate eclose` (or just `pupate`) to generate CSS
+and HTML in the output directory based on the contents of the `larva/` directory.
 
 ### Embellishments
 
