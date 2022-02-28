@@ -7,7 +7,7 @@
   "bin": {
     "pupate": "dist/bin/index.js"
   },
-  "preferGlobal": "true",
+  "preferGlobal": true,
   "scripts": {
     "build": "tsc"
   },
