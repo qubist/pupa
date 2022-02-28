@@ -9,7 +9,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc; cd exampleBlog; pupate"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "colors": "^1.4.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7"
-  },
+   },
   "directories": {
     "lib": "lib"
   },
