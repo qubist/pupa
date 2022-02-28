@@ -9,7 +9,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "build": "tsc; cd exampleBlog; pupate"
+    "build": "tsc; cd exampleBlog; echo 'Updating example blog'; pupate"
   },
   "repository": {
     "type": "git",
