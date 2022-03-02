@@ -22,7 +22,7 @@ try {
 // Handle arguments and options
 yargs
   .command(
-    'check',
+    ['check', 'c'],
     'check that the current working directory is a valid Pupate-shaped directory',
     {},
     function(argv) {
@@ -30,14 +30,14 @@ yargs
       check(true)
     })
   .command(
-    'spawn',
+    ['spawn', 's'],
     'create necessary pupate files in the current working directory',
     {},
     function(argv) {
       spawn()
     })
   .command(
-    ['eclose'], 
+    ['eclose', 'emerge', 'e'], 
     'build the site in the output directory based on the content of the larva directory',
     {},
     function(argv) {
