@@ -100,7 +100,7 @@ export function eclose(): void {
   createStylesheet(outputLocation, options)
   logger.info(`Wrote ${pageEntries.length + 2} files`.cyan)
 
-  logger.info(`Molted! New imago lives at: ${outputLocation.reset}`.green)
+  logger.info(`Emerged! New imago lives at: ${outputLocation.reset}`.green)
 }
 
 function isTxt(filepath: string): boolean {
