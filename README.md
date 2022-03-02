@@ -32,6 +32,7 @@ Run `puate help` to make sure pupate was installed correctly.
 ## Usage
 
 ```
+
 pupate
 
 Commands:
@@ -43,8 +44,14 @@ Commands:
                  the larva directory                        [aliases: emerge, e]
 
 Options:
-  --version  Show version number                                       [boolean]
-  --help     Show help                                                 [boolean]
+      --version                    Show version number                 [boolean]
+  -o, --output, --out, --loglevel  minimum importance-level of messages to
+                                   display
+          [string] [choices: "ERROR", "WARN", "INFO", "DEBUG"] [default: "INFO"]
+  -q, --quiet                      run without any output
+                                                      [boolean] [default: false]
+      --help                       Show help                           [boolean]
+      
 ```
 
 ### Overview
