@@ -18,12 +18,12 @@ export function createHomepage(entry: Entry, outputLocation: string, pageEntries
 // Renders an entry into the homepage (html string), ignoring datestring,
 // and creating an index from the list of page entries
 function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): string {
-  // bring in template homepage from defaults folder
+  // Bring in template homepage from defaults folder
   let homepage: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/homepage.html')).toString()
 
-  // create index from list of page entries
+  // Create index from list of page entries
   let index: string = ''
-  if (options.showIndexWith != 'dont') { // if we should actually make an index
+  if (options.showIndexWith != 'dont') { // If we should actually make an index...
     // decide from options how to sort the index
     let sortFunction
     switch (options.sortIndexBy) {
@@ -39,14 +39,14 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
       case 'title':
         sortFunction = (a: Entry, b: Entry): number => a.title.localeCompare(b.title)
         break
-      // checks should catch anything else, so no default needed
+      // Checks should catch anything else, so no default needed
     }
 
-    // decide from options how to display the index
+    // Decide from options how to display the index
     //  - with or without dates
     //  - with the proper links
     for (const entry of pageEntries.sort(sortFunction)) {
-      // get the link that will lead to the entry's page
+      // Get the link that will lead to the entry's page
       let slug = getSlug(entry, options.pageURLsBasedOn)
 
       // NOTE: Potentially change embellish below to unembellish if unembellished index is better?
@@ -62,7 +62,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
     }
   }
 
-  // replace keywords in homepage template, bottom to top
+  // Replace keywords in homepage template, bottom to top
   homepage = homepage.replace(/INDEX/, index)
                      .replace(/CONTENT/, embellish(entry.content))
                      .replace(/BODYTITLE/, embellish(entry.title))

@@ -11,10 +11,10 @@ type OptionsDict = Record<string, string>
 // as long as the file is formatted right. Dictionary won't have entries for
 // options not listed in the file or without a value.
 function getOptionsDict(filename: string): OptionsDict {
-  // get list of lines from file
+  // Get list of lines from file
   let optionsList: string[] = fs.readFileSync(filename).toString().split(/\r?\n/)
 
-  // check that the options file is formatted right
+  // Check that the options file is formatted right
   if (!validOptionsFormat(optionsList)) {
     logger.error(`Options file not formatted properly: ${filename.reset}`.red)
     process.exit(1)
@@ -22,7 +22,7 @@ function getOptionsDict(filename: string): OptionsDict {
 
   let optionsDict: Record<string, string> = {}
   for (let o of optionsList) {
-    // ignore whitespace or empty lines and ignore standalone option names
+    // Ignore whitespace or empty lines and ignore standalone option names
     if (!/^\s*$/.test(o) && !/^[A-z]+$/.test(o.trim())) {
       let optionName: string = o.substr(0,o.indexOf(' '))
       let optionValue: string = o.substr(o.indexOf(' ')+1)
@@ -30,7 +30,7 @@ function getOptionsDict(filename: string): OptionsDict {
     }
   }
 
-  // check that options have resonable values
+  // Check that options have resonable values
   var { boolean, maybeDetails } = validOptionsValues(optionsDict)
   if (!boolean) {
       let details: string = maybeDetails as string
@@ -59,11 +59,11 @@ export interface Options {
 }
 
 export function createOptions(optionsFile: string): Options {
-  // we know user values are resonable at this point. Get them.
+  // We know user values are resonable at this point. Get them.
   let userOptionsDict = getOptionsDict(optionsFile)
   let defaultOptionsDict = getOptionsDict(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`))
 
-  // fill out options with user defined values if they exist, or fall back on
+  // Fill out options with user defined values if they exist, or fall back on
   // defaults. userOptionsDict will return undefined if the key isn't found, in
   // which case the || chooses the defaultOptionsDict version.
   let options: Options = {
@@ -99,7 +99,7 @@ interface BooleanWithDetails {
   maybeDetails: string | undefined
 }
 
-// returns whether the option values were valid and possibly a string of the the
+// Returns whether the option values were valid and possibly a string of the the
 // options values that were invalid.
 function validOptionsValues(optionsDict: OptionsDict): BooleanWithDetails  {
     let valid: boolean = true
@@ -129,7 +129,7 @@ function validOptionsValues(optionsDict: OptionsDict): BooleanWithDetails  {
 
     let maybeDetails: string | undefined
     if (invalidValues.length == 0) {
-      // if there are no invalid values, details is undefined
+      // If there are no invalid values, details is undefined
       maybeDetails = undefined
     } else {
       maybeDetails = invalidValues.join(', ')

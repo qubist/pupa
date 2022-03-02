@@ -11,10 +11,10 @@ export function createStylesheet(outputLocation: string, options: Options) {
 }
 
 function renderStylesheet(options: Options): string {
-  // bring in template homepage from defaults folder
+  // Bring in template homepage from defaults folder
   let stylesheet: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/styles.css')).toString()
 
-  // replace keywords in styles template, bottom to top
+  // Replace keywords in styles template, bottom to top
   stylesheet = stylesheet.replace(/LINKCOLOR/, options.linkColor)
                          .replace(/BACKGROUNDCOLOR/, options.backgroundColor)
                          .replace(/TEXTCOLOR/, options.textColor)

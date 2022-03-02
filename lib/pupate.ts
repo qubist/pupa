@@ -21,7 +21,7 @@ export function spawn(): void {
     fs.mkdirSync('larva/entries')
   }
   if (!fs.existsSync(`larva/${HOMEPAGE_FILENAME}`)) {
-    // copy homepage file from lib/defaults/ (where all pupate default files are
+    // Copy homepage file from lib/defaults/ (where all pupate default files are
     // stored) to the working directory
     fs.copyFileSync(path.resolve(__dirname, `../../lib/defaults/larva/${HOMEPAGE_FILENAME}`), `./larva/${HOMEPAGE_FILENAME}`)
   }
@@ -66,37 +66,37 @@ function isPupateDir(): boolean {
 export function eclose(): void {
   logger.info('Emerging...'.cyan)
 
-  // make sure current directory is Pupate-shaped and exit if it isn't
+  // Make sure current directory is Pupate-shaped and exit if it isn't
   if (!check()) {
     process.exit(1)
   }
 
-  // get user-defined options
+  // Get user-defined options
   const options = createOptions(`./${OPTIONS_FILENAME}`)
 
-  // set output location for the finished site, and make the directory if needed
+  // Set output location for the finished site, and make the directory if needed
   let outputLocation: string = options.outputLocation
   if (!fs.existsSync(outputLocation)) {
     fs.mkdirSync(outputLocation, {recursive: true})
   }
 
-  // clear output directory for a fresh rebuild
+  // Clear output directory for a fresh rebuild
   clear(outputLocation)
 
-  // make pageEntry objects from the text files in the entries directory
+  // Make pageEntry objects from the text files in the entries directory
   let pageEntries: Entry[] = []
   for (const filepath of fs.readdirSync('./larva/entries').filter(isTxt)) {
     pageEntries.push(makeEntry(`./larva/entries/${filepath}`))
   }
 
-  // create pages, careful not to reuse slugs
+  // Create pages, careful not to reuse slugs
   createPages(pageEntries, options)
 
-  // create homepage
+  // Create homepage
   let homepageEntry = makeEntry('./larva/homepage.txt')
   createHomepage(homepageEntry, outputLocation, pageEntries, options)
 
-  // create stylesheet
+  // Create stylesheet
   createStylesheet(outputLocation, options)
   logger.info(`Wrote ${pageEntries.length + 2} files`.cyan)
 
@@ -116,7 +116,7 @@ function clear(location: string): void {
   for (let file of fs.readdirSync(location)) {
     let origFilepath = path.resolve(location, file)
     let backupFilepath = path.resolve(backupLocation, file)
-    // remove any pre-existing file with the same name (so basicaclly overwrite)
+    // Remove any pre-existing file with the same name (so basicaclly overwrite)
     fs.rmSync(backupFilepath, {recursive: true, force: true})
     fs.renameSync(origFilepath, backupFilepath)
   }
@@ -136,7 +136,7 @@ function createPage(entry: Entry, outputLocation: string, options: Options): voi
 
 // Renders an Entry into a Page (html string)
 function renderPage(entry: Entry): string {
-  // read default page html from defaults folder
+  // Read default page html from defaults folder
   let page: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/page.html')).toString()
   // Replace keywords in reverse order in the template so the replaced content
   // can't interfere with the process (only first occurence is replaced)
@@ -151,7 +151,7 @@ function renderPage(entry: Entry): string {
 function createPages(pageEntries: Entry[], options: Options) {
   let usedSlugs: string[] = []
 
-  // iterate through all entries backwards so we can remove while iterating
+  // Iterate through all entries backwards so we can remove while iterating
   pageEntries.reverse() // but reverse it first to preserve order
   for (let i = pageEntries.length - 1; i >= 0; i--) {
     const pageEntry = pageEntries[i]
@@ -159,11 +159,11 @@ function createPages(pageEntries: Entry[], options: Options) {
     let currentSlug = getSlug(pageEntry, options.pageURLsBasedOn)
     if (usedSlugs.includes(currentSlug)) {
       logger.warn('WARNING! The page for entry '.yellow + unembellish(pageEntry.title).reset + ' would have generated with the same URL (ending in '.yellow + currentSlug.reset + ') as an already-generated page. Skipping creation of this page! Disambiguate the '.yellow + options.pageURLsBasedOn.yellow + ' of the entry so Pupate can create this page.'.yellow)
-      pageEntries.splice(i, 1); // remove current entry so it's skipped later
+      pageEntries.splice(i, 1); // Remove current entry so it's skipped later
     } else {
       createPage(pageEntry, options.outputLocation, options)
       usedSlugs.push(currentSlug)
     }
   }
-  pageEntries.reverse() // put the order back to normal
+  pageEntries.reverse() // Put the order back to normal
 }
