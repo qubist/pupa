@@ -116,13 +116,15 @@ Available embellishments are hyperlinks, bold, italic, and text-color.
 <tr><td>Bold</td><td>
         
 ```
-Chicken soup is *not* vegetarian.
+Chicken soup is
+*not* vegetarian.
 ```
 
 </td><td>
         
 ```html
-Chicken soup is <b>not</b> vegetarian.
+Chicken soup is
+<b>not</b> vegetarian.
 ```
 
 </td><td>
@@ -132,13 +134,15 @@ Chicken soup is **not** vegetarian.
 </td></tr><tr><td>Italic</td><td>
         
 ```
-Potato soup is _usually_ cage-free.
+Potato soup is
+_usually_ cage-free.
 ```
 
 </td><td>
         
 ```html
-Potato soup is <i>usually</i> cage-free.
+Potato soup is
+<i>usually</i> cage-free.
 ```
 
 </td><td>
@@ -148,29 +152,36 @@ Potato soup is *usually* cage-free.
 </td></tr><tr><td>Color</td><td>
         
 ```
-First, add {red}(red) and {green}(#00ff00) peppers.
+First, add {red}(red) and
+{green}(#00ff00) peppers.
 ```
 
 </td><td>
         
 ```html
-First, add <span style="color: red">red</span> and <span style="color: #00ff00">green</span> peppers.
+First, add <span style="color: red">red</span> and
+<span style="color: #00ff00">green</span> peppers.
 ```
 
 </td><td>
 
-First, add <span style="color: red">red</span> and green peppers.
+First, add <span style="color: red">red</span> and
+<span style="color: #00ff00">green</span> peppers.
 
 </td></tr><tr><td>Links</td><td>
     
 ```
-Check out my [soup recipe](https://example.com) for details.
+Check out my
+[soup recipe](https://example.com)
+for details.
 ```
 
 </td><td>
 
 ```html
-Check out my <a href="https://example.com/">soup recipe</a> for details.
+Check out my
+<a href="https://example.com/">soup recipe</a>
+for details.
 ```
 
 </td><td>
