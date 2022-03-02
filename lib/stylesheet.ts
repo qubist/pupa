@@ -1,10 +1,11 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
+import { logger } from '../bin/index'
 import { Options } from './options'
 
 export function createStylesheet(outputLocation: string, options: Options) {
-  console.debug('Creating stylesheet'.white)
+  logger.debug('Creating stylesheet'.white)
   
   fs.writeFileSync(`${outputLocation}/styles.css`, renderStylesheet(options))
 }

@@ -9,7 +9,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "build": "tsc; cd exampleBlog; echo 'Updating example blog'; pupate"
+    "build": "tsc; cd exampleBlog; echo 'Updating example blog'; pupate -o WARN"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "colors": "^1.4.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
+    "winston": "^3.6.0",
     "yargs": "^17.3.1"
   },
   "directories": {

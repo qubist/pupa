@@ -1,7 +1,7 @@
 import { PageURLsBasedOnValue } from './options'
 import { Entry } from './entry'
 import { unembellish } from './embellish'
-
+import { logger } from '../bin/index'
 
 // Make a title, filename, or date ready to be part of an entry URL
 function slugify(value: string, form: PageURLsBasedOnValue): string {
@@ -12,7 +12,7 @@ function slugify(value: string, form: PageURLsBasedOnValue): string {
   .replace(/^-|-$/g, '') // remove leading/trailing dashes
 
   if (value == '') {
-    console.error('Slugification failed! An entry had the '.red + form.red + ` "${value}"`.reset + ', which produced an empty slug. Try changing this '.red + form.red + ' or choose a new option for the pageURLsBasedOn setting.'.red)
+    logger.error('Slugification failed! An entry had the '.red + form.red + ` "${value}"`.reset + ', which produced an empty slug. Try changing this '.red + form.red + ' or choose a new option for the pageURLsBasedOn setting.'.red)
     process.exit(1)
   }
 

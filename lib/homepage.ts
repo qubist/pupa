@@ -2,6 +2,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import 'colors'
 
+import { logger } from '../bin/index'
 import { Options } from './options'
 import { Entry } from './entry'
 import { embellish, unembellish } from './embellish'
@@ -9,7 +10,7 @@ import { getSlug } from './slugs'
 
 // Creates the homepage by rendering it and outputing the file to the right location
 export function createHomepage(entry: Entry, outputLocation: string, pageEntries: Entry[], options: Options): void {
-  console.debug('Creating homepage'.white)
+  logger.debug('Creating homepage'.white)
 
   fs.writeFileSync(`${outputLocation}/index.html`, renderHomepage(entry, pageEntries, options))
 }
@@ -55,7 +56,7 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
       } else if (options['showIndexWith'] == 'noDates') {
         index += `<a href="${slug}">${embellish(entry.title)}</a>\n`
       } else {
-        console.error('Unknown value for showIndexWith option'.red)
+        logger.error('Unknown value for showIndexWith option'.red)
         process.exit(1)
       }
     }

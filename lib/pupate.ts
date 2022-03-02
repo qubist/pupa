@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import 'colors'
 import * as path from 'path'
 
+import { logger } from '../bin/index'
 import { OPTIONS_FILENAME, HOMEPAGE_FILENAME } from './consts'
 import { createOptions, Options } from './options'
 import { createStylesheet } from './stylesheet'
@@ -12,7 +13,7 @@ import { getSlug } from './slugs'
 
 // Spawns the contents of a valid Pupate directory, writing files and directories that don't exist.
 export function spawn(): void {
-  console.info('Spawning...'.cyan)
+  logger.info('Spawning...'.cyan)
   if (!fs.existsSync('larva')) {
     fs.mkdirSync('larva')
   }
@@ -28,7 +29,7 @@ export function spawn(): void {
     fs.copyFileSync(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`), `./${OPTIONS_FILENAME}`)
   }
 
-  console.info('Spawning finished!'.green)
+  logger.info('Spawning finished!'.green)
 }
 
 // Check if the current working directory is Pupate-shaped
@@ -40,11 +41,11 @@ export function spawn(): void {
 //  - Also print a message if it is Pupate-shaped
 export function check(loud=false): boolean {
   if (!isPupateDir()) {
-    console.error('Not a Pupate-shaped directory'.red)
+    logger.error('Not a Pupate-shaped directory'.red)
     return false
   } else {
     if (loud) {
-      console.info('Current directory is Pupate-shaped!'.green)
+      logger.info('Current directory is Pupate-shaped!'.green)
     }
     return true
   }
@@ -56,14 +57,14 @@ function isPupateDir(): boolean {
   for (const path of requiredPaths) {
     if (!fs.existsSync(path)) {
       ok = false
-      console.warn(`WARNING! Missing path: ${path.reset}`.yellow)
+      logger.warn(`WARNING! Missing path: ${path.reset}`.yellow)
     }
   }
   return ok
 }
 
 export function eclose(): void {
-  console.info('Emerging...'.cyan)
+  logger.info('Emerging...'.cyan)
 
   // make sure current directory is Pupate-shaped and exit if it isn't
   if (!check()) {
@@ -97,9 +98,9 @@ export function eclose(): void {
 
   // create stylesheet
   createStylesheet(outputLocation, options)
-  console.info(`Wrote ${pageEntries.length + 2} files`.cyan)
+  logger.info(`Wrote ${pageEntries.length + 2} files`.cyan)
 
-  console.info(`Molted! New imago lives at: ${outputLocation.reset}`.green)
+  logger.info(`Molted! New imago lives at: ${outputLocation.reset}`.green)
 }
 
 function isTxt(filepath: string): boolean {
@@ -109,7 +110,7 @@ function isTxt(filepath: string): boolean {
 // Clear a directory of all files and folders, and move everything into a hidden
 // backup directory
 function clear(location: string): void {
-  console.debug('Clearing the output directory '.white + location.reset + ' to ensure a fresh rebuild'.white)
+  logger.debug('Clearing the output directory '.white + location.reset + ' to ensure a fresh rebuild'.white)
 
   let backupLocation = path.resolve(__dirname, '../../.imagobackup')
   for (let file of fs.readdirSync(location)) {
@@ -120,14 +121,14 @@ function clear(location: string): void {
     fs.renameSync(origFilepath, backupFilepath)
   }
 
-  console.debug(`(The cleared files were backed up to ${backupLocation.reset})`.white)
+  logger.debug(`(The cleared files were backed up to ${backupLocation.reset})`.white)
 }
 
 // Creates a page by rendering the page and writing it to a file inside the correct folder
 function createPage(entry: Entry, outputLocation: string, options: Options): void {
   let slug = getSlug(entry, options.pageURLsBasedOn)
 
-  console.debug('Creating page '.white + entry.filename.reset + ' in '.white + path.resolve(outputLocation, slug).reset)
+  logger.debug('Creating page '.white + entry.filename.reset + ' in '.white + path.resolve(outputLocation, slug).reset)
 
   fs.mkdirSync(path.resolve(outputLocation, slug), {recursive: true})
   fs.writeFileSync(path.resolve(outputLocation, slug, 'index.html'), renderPage(entry))
@@ -157,7 +158,7 @@ function createPages(pageEntries: Entry[], options: Options) {
 
     let currentSlug = getSlug(pageEntry, options.pageURLsBasedOn)
     if (usedSlugs.includes(currentSlug)) {
-      console.warn('WARNING! The page for entry '.yellow + unembellish(pageEntry.title).reset + ' would have generated with the same URL (ending in '.yellow + currentSlug.reset + ') as an already-generated page. Skipping creation of this page! Disambiguate the '.yellow + options.pageURLsBasedOn.yellow + ' of the entry so Pupate can create this page.'.yellow)
+      logger.warn('WARNING! The page for entry '.yellow + unembellish(pageEntry.title).reset + ' would have generated with the same URL (ending in '.yellow + currentSlug.reset + ') as an already-generated page. Skipping creation of this page! Disambiguate the '.yellow + options.pageURLsBasedOn.yellow + ' of the entry so Pupate can create this page.'.yellow)
       pageEntries.splice(i, 1); // remove current entry so it's skipped later
     } else {
       createPage(pageEntry, options.outputLocation, options)
