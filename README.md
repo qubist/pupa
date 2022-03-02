@@ -129,7 +129,8 @@ Chicken soup is
 
 </td><td>
 
-Chicken soup is **not** vegetarian.
+Chicken soup is  
+**not** vegetarian.
     
 </td></tr><tr><td>Italic</td><td>
         
@@ -147,32 +148,43 @@ Potato soup is
 
 </td><td>
         
-Potato soup is *usually* cage-free.
+Potato soup is  
+*usually* cage-free.
          
 </td></tr><tr><td>Color</td><td>
         
 ```
-First, add {red}(red) and
-{green}(#00ff00) peppers.
+First, add
+{red}(red)
+and
+{green}(#00ff00)
+peppers.
 ```
 
 </td><td>
         
 ```html
-First, add <span style="color: red">red</span> and
-<span style="color: #00ff00">green</span> peppers.
+First, add
+<span style="color: red">red</span>
+and
+<span style="color: #00ff00">green</span>
+peppers.
 ```
 
 </td><td>
 
-First, add <span style="color: red">red</span> and
-<span style="color: #00ff00">green</span> peppers.
+First, add  
+red  
+and  
+green  
+peppers.  
+(but imagine the text is colored)
 
 </td></tr><tr><td>Links</td><td>
     
 ```
 Check out my
-[soup recipe](https://example.com)
+[recipe](https://e.com)
 for details.
 ```
 
@@ -180,13 +192,15 @@ for details.
 
 ```html
 Check out my
-<a href="https://example.com/">soup recipe</a>
+<a href="https://e.com/">recipe</a>
 for details.
 ```
 
 </td><td>
 
-Check out my [soup recipe](https://example.com) for details.
+Check out my  
+[recipe](https://e.com)  
+for details.
 
 </td></tr></tbody></table>
 
