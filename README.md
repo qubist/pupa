@@ -107,6 +107,11 @@ Available embellishments are hyperlinks, bold, italic, and text-color.
 
 <details><summary>Embellishment details</summary>
 
+
+
+
+<!-- END EMBELLISHMENTS TABLE -->
+
 <table><thead><tr>
     <th>Embellishment</th>
     <th>Pupate plaintext</th>
@@ -204,6 +209,11 @@ for details.
 
 </td></tr></tbody></table>
 
+<!-- END EMBELLISHMENTS TABLE -->
+
+
+
+
 #### Nesting
 
 All embellishments besides links are allowed to be nested.
@@ -216,17 +226,133 @@ The `larva/options.txt` file defines options for the whole site. Each line
 contains a camel-case option name followed by a space followed by the value for
 that option. If an available option is not specified, its default is used.
 
-| Option name         | Description                                                                                               | Allowed values                                                                                                                                                                                  | Default value |
-|---------------------|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| `fontIs`            | Font family for all text on the site                                                                      | Arbitrary CSS value (only web-safe fonts work I think?)                                                                                                                                         | `monospace`   |
-| `sizeIs`            | Font size for all text                                                                                    | Arbitrary CSS value                                                                                                                                                                             | `16px`        |
-| `textColorIs`       | Default color for all text                                                                                | Arbitrary CSS value                                                                                                                                                                             | `initial`     |
-| `linkColorIs`       | Default text color for links                                                                              | Arbitrary CSS value                                                                                                                                                                             | `revert`      |
-| `backgroundColorIs` | Background color for all pages                                                                            | Arbitrary CSS value                                                                                                                                                                             | `initial`     |
-| `showIndexWith`     | How or whether to display the index of pages on the homepage                                              | * `dates` (display each page's title with its date) * `noDates` (display each page's title only) * `dont` (don't display an index of pages. Useful if you'll make your own index)               | `dates`       |
-| `sortIndexBy`       | Order in which to sort pages in the index                                                                 | * `newest` (sort lexicographically by date, [note: this won't work with most human-readable dates](https://twitter.com/wormplaza/status/1295572138494234624)) * `oldest` * `filename` * `title` | `newest`      |
-| `pageURLsBasedOn`   | How to derive the URLs for entry pages. (All values are unembellished and sanitized before use in a URL.) | * `title` * `filename` * `date`                                                                                                                                                                 | `filename`    |
-| `outputLocationIs`  | Path at which to generate the site                                                                        | Valid path string                                                                                                                                                                               | `./imago/`    |
+
+
+
+<!-- OPTIONS TABLE -->
+
+<table><thead><tr>
+    <th>Option name</th>
+    <th>Description</th>
+    <th>Allowed values</th>
+    <th>Default value</th>
+  </tr></thead><tbody><tr><td>
+    
+`fontIs`
+
+   </td>
+    <td>Font family for all text on the site</td>
+    <td>Arbitrary CSS value (only web-safe fonts work I think?)</td>
+    <td>
+    
+`monospace`
+
+</td></tr><tr><td>
+    
+`sizeIs`
+
+   </td>
+    <td>Font size for all text</td>
+    <td>Arbitrary CSS value</td>
+    <td>
+    
+`16px`
+
+</td></tr><tr><td>
+    
+`textColorIs`
+
+   </td>
+    <td>Default color for all text</td>
+    <td>Arbitrary CSS value</td>
+    <td>
+    
+`initial`
+
+</td></tr><tr><td>
+    
+`linkColorIs`
+
+   </td>
+    <td>Default text color for links</td>
+    <td>Arbitrary CSS value</td>
+    <td>
+    
+`revert`
+
+</td></tr><tr><td>
+    
+`backgroundColorIs`
+
+   </td>
+    <td>Background color for all pages</td>
+    <td>Arbitrary CSS value</td>
+    <td>
+    
+`initial`
+
+</td></tr><tr><td>
+    
+`showIndexWith`
+
+   </td><td>How or whether to display the index of pages on the homepage</td><td>
+    
+* `dates` (display each page's title with its date)
+* `noDates` (display each page's title only)
+* `dont` (don't display an index of pages. Useful if you'll make your own index)
+
+</td><td>
+
+`dates`
+
+</td></tr><tr><td>
+    
+`sortIndexBy`
+
+   </td>
+    <td>Order in which to sort pages in the index</td>
+    <td>
+    
+* `newest` (sort lexicographically by date, [note: this won't work with most human-readable dates](https://twitter.com/wormplaza/status/1295572138494234624))
+* `oldest`
+* `filename`
+* `title`
+
+</td><td>
+    
+`newest`
+
+</td></tr><tr><td>
+    
+`pageURLsBasedOn`
+
+   </td>
+    <td>How to derive the URLs for entry pages. (All values are unembellished and sanitized before use in a URL.)</td>
+    <td>
+    
+* `title`
+* `filename`
+* `date`
+    
+</td><td>
+
+`filename`
+
+</td></tr><tr><td>
+
+`outputLocationIs`
+
+</td><td>Path at which to generate the site</td>
+<td>Valid path string</td><td>
+
+`./imago/`
+
+</td></tr></tbody></table>
+
+<!-- END OPTIONS TABLE -->
+
+
+
 
 You can also see an [example options.txt in the example blog](/example%20blog/options.txt).
 
