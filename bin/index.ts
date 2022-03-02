@@ -26,8 +26,8 @@ yargs
     'check that the current working directory is a valid Pupate-shaped directory',
     {},
     function(argv) {
-      // Check if directory is Pupate-shaped with param quiet = false
-      check(false)
+      // Check if directory is Pupate-shaped with param loud = true
+      check(true)
     })
   .command(
     'spawn',

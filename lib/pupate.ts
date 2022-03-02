@@ -31,12 +31,22 @@ export function spawn(): void {
   console.info('Spawning finished!'.green)
 }
 
-export function check(quiet = true): void {
+// Check if the current working directory is Pupate-shaped
+// Default to quiet behavior:
+//  - Print nothing if it is Pupate-shaped
+//  - Print an error and return false if it isn't (letting caller decide whether
+//    to terminate)
+// Loud behavior:
+//  - Also print a message if it is Pupate-shaped
+export function check(loud=false): boolean {
   if (!isPupateDir()) {
-    throw 'Not a Pupate-shaped directory'.red
-  }
-  if (!quiet) {
-    console.info('Current directory is Pupate-shaped!'.green)
+    console.error('Not a Pupate-shaped directory'.red)
+    return false
+  } else {
+    if (loud) {
+      console.info('Current directory is Pupate-shaped!'.green)
+    }
+    return true
   }
 }
 
@@ -55,8 +65,10 @@ function isPupateDir(): boolean {
 export function eclose(): void {
   console.info('Emerging...'.cyan)
 
-  // make sure current directory is Pupate-shaped
-  check()
+  // make sure current directory is Pupate-shaped and exit if it isn't
+  if (!check()) {
+    process.exit(1)
+  }
 
   // get user-defined options
   const options = createOptions(`./${OPTIONS_FILENAME}`)
