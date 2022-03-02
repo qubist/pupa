@@ -251,6 +251,11 @@ PR, but be prepared for it to be moved past for now.
    the `dist/` directory. The build script also automatically regenerates the
    example blog to keep it updated with the current source code.
 
+## See also
+
+* [Markdown](https://daringfireball.net/projects/markdown/)
+* [Bloggen](http://www.davisr.me/projects/bloggen/) 
+
 ## License
 
 [GPL](/LICENSE)
