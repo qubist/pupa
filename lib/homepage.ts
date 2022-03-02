@@ -55,7 +55,8 @@ function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): s
       } else if (options['showIndexWith'] == 'noDates') {
         index += `<a href="${slug}">${embellish(entry.title)}</a>\n`
       } else {
-        throw 'Unknown value for showIndexWith option'.red
+        console.error('Unknown value for showIndexWith option'.red)
+        process.exit(1)
       }
     }
   }
