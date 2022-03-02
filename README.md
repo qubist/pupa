@@ -31,21 +31,25 @@ Run `puate help` to make sure pupate was installed correctly.
 
 ## Usage
 
-Subcommands:
+```
+pupate
 
-<!-- FIXME: put full help output here -->
+Commands:
+  pupate check   check that the current working directory is a valid
+                 Pupate-shaped directory                            [aliases: c]
+  pupate spawn   create necessary pupate files in the current working directory
+                                                                    [aliases: s]
+  pupate eclose  build the site in the output directory based on the content of
+                 the larva directory                        [aliases: emerge, e]
 
-`pupate check`: Checks that the current working directory is a valid
-Pupate-shaped directory.
-
-`pupate spawn`: Creates a 
-
-`pupate eclose`: Build the site in the output directory (default `imago/`) based
-on content in the `larva/` directory
+Options:
+  --version  Show version number                                       [boolean]
+  --help     Show help                                                 [boolean]
+```
 
 ### Overview
 
-Pupate needs to run in a Pupate-shaped directory.
+Pupate needs to run in a Pupate-shaped directory. Here is the tree of one such directory:
 
 ```
 pupate-site
@@ -62,10 +66,10 @@ pupate-site
     └── styles.css
 ```
 
-Inside, there are two folders, `larva/` and `imago/`. Text files for entries,
+Inside, there are two directories, `larva/` and `imago/`. Text files for entries,
 plus a homepage file and an options file live in `larva/`. Running Pupate
-generates a site in `imago/`. (The location where the site is generated can be
-customized.)
+generates a site in `imago/`. (The location where the site is generated can also
+be customized.)
 
 ### Editing entries
 
