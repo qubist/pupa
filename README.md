@@ -23,8 +23,8 @@ it. Just write, then watch your ideas emerge fully formed and beautiful.
 
 ## Install
 
-```
-npm install pupate -g
+```shell
+sudo npm install pupate -g
 ```
 
 Run `puate help` to make sure pupate was installed correctly.
