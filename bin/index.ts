@@ -80,7 +80,7 @@ try {
   fs.accessSync(path.resolve(__dirname), fs.constants.R_OK | fs.constants.W_OK);
   // FIXME: check that output location is writeable too?
 } catch {
-  logger.warn("WARNING! Pupate creates and deletes files in the output location, and might not run correctly if it doesn't have with the proper permissions".yellow)
+  logger.warn("WARNING! Pupate lacks read and write access to the current working directory. It might not run correctly if it doesn't have the proper permissions.".yellow)
 }
 
 let subcommand = argv._[0]
