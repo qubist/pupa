@@ -1,6 +1,6 @@
 {
   "name": "pupate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple static site generator for text-only blogs that invites code-injection as an editing tool",
   "main": "dist/lib/pupate.js",
   "types": "dist/lib/pupate.d.ts",
