@@ -19,7 +19,7 @@ export function createHomepage(entry: Entry, outputLocation: string, pageEntries
 // and creating an index from the list of page entries
 function renderHomepage(entry: Entry, pageEntries: Entry[], options: Options): string {
   // Bring in template homepage from defaults folder
-  let homepage: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/homepage.html')).toString()
+  let homepage: string = fs.readFileSync(path.resolve(__dirname, '../../defaults/imago/homepage.html')).toString()
 
   // Create index from list of page entries
   let index: string = ''

@@ -23,10 +23,10 @@ export function spawn(): void {
   if (!fs.existsSync(`larva/${HOMEPAGE_FILENAME}`)) {
     // Copy homepage file from lib/defaults/ (where all pupate default files are
     // stored) to the working directory
-    fs.copyFileSync(path.resolve(__dirname, `../../lib/defaults/larva/${HOMEPAGE_FILENAME}`), `./larva/${HOMEPAGE_FILENAME}`)
+    fs.copyFileSync(path.resolve(__dirname, `../../defaults/larva/${HOMEPAGE_FILENAME}`), `./larva/${HOMEPAGE_FILENAME}`)
   }
   if (!fs.existsSync(OPTIONS_FILENAME)) {
-    fs.copyFileSync(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`), `./${OPTIONS_FILENAME}`)
+    fs.copyFileSync(path.resolve(__dirname, `../../defaults/${OPTIONS_FILENAME}`), `./${OPTIONS_FILENAME}`)
   }
 
   logger.info('Spawning finished!'.green)
@@ -137,7 +137,7 @@ function createPage(entry: Entry, outputLocation: string, options: Options): voi
 // Renders an Entry into a Page (html string)
 function renderPage(entry: Entry): string {
   // Read default page html from defaults folder
-  let page: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/page.html')).toString()
+  let page: string = fs.readFileSync(path.resolve(__dirname, '../../defaults/imago/page.html')).toString()
   // Replace keywords in reverse order in the template so the replaced content
   // can't interfere with the process (only first occurence is replaced)
   page = page.replace(/CONTENT/, embellish(entry.content))

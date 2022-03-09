@@ -61,7 +61,7 @@ export interface Options {
 export function createOptions(optionsFile: string): Options {
   // We know user values are resonable at this point. Get them.
   let userOptionsDict = getOptionsDict(optionsFile)
-  let defaultOptionsDict = getOptionsDict(path.resolve(__dirname, `../../lib/defaults/${OPTIONS_FILENAME}`))
+  let defaultOptionsDict = getOptionsDict(path.resolve(__dirname, `../../defaults/${OPTIONS_FILENAME}`))
 
   // Fill out options with user defined values if they exist, or fall back on
   // defaults. userOptionsDict will return undefined if the key isn't found, in
