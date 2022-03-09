@@ -64,8 +64,8 @@ pupate-site
 │   ├── entries
 │   │   └── soup.txt
 │   │   └── salad.txt
-│   ├── homepage.txt
-│   └── options.txt
+│   └── homepage.txt
+├── options.txt
 └── imago
     ├── index.html
     ├── soup
@@ -73,8 +73,8 @@ pupate-site
     └── styles.css
 ```
 
-Inside, there are two directories, `larva/` and `imago/`. Text files for entries,
-plus a homepage file and an options file live in `larva/`. Running Pupate
+Inside, there are two directories, `larva/` and `imago/` and an options file. Text files for entries,
+plus a homepage file live in `larva/`. Running Pupate
 generates a site in `imago/`. (The location where the site is generated can also
 be customized.)
 

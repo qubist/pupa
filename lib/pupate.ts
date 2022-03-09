@@ -21,7 +21,7 @@ export function spawn(): void {
     fs.mkdirSync('larva/entries')
   }
   if (!fs.existsSync(`larva/${HOMEPAGE_FILENAME}`)) {
-    // Copy homepage file from lib/defaults/ (where all pupate default files are
+    // Copy homepage file from defaults/ (where all Pupate default files are
     // stored) to the working directory
     fs.copyFileSync(path.resolve(__dirname, `../../defaults/larva/${HOMEPAGE_FILENAME}`), `./larva/${HOMEPAGE_FILENAME}`)
   }
