@@ -1,4 +1,5 @@
-Homepage title
-datestring
-Content!
-more content for all the remaining lines!
+Homepage title goes here
+(date line is ignored on the homepage)
+
+Content goes here!
+More content goes in all the remaining lines...
