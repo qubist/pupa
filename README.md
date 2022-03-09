@@ -413,6 +413,13 @@ PR, but be prepared for it to be moved past for now.
    the `dist/` directory. The build script also automatically regenerates the
    example blog to keep it updated with the current source code.
 
+### Publishing a new version to npm
+
+1. `npm run build` to compile TypeScript and build the example blog
+2. `npm version (major|minor|patch)` to bump the version number depending on the
+   changes
+3. `npm publish`
+
 ## See also
 
 * [Markdown](https://daringfireball.net/projects/markdown/)
