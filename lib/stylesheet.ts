@@ -12,7 +12,7 @@ export function createStylesheet(outputLocation: string, options: Options) {
 
 function renderStylesheet(options: Options): string {
   // Bring in template homepage from defaults folder
-  let stylesheet: string = fs.readFileSync(path.resolve(__dirname, '../../lib/defaults/imago/styles.css')).toString()
+  let stylesheet: string = fs.readFileSync(path.resolve(__dirname, '../../defaults/imago/styles.css')).toString()
 
   // Replace keywords in styles template, bottom to top
   stylesheet = stylesheet.replace(/LINKCOLOR/, options.linkColor)
