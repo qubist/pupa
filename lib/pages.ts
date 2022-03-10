@@ -18,9 +18,9 @@ function createPage(entry: Entry, outputLocation: string, options: Options): voi
     fs.writeFileSync(path.resolve(outputLocation, slug, 'index.html'), renderPage(entry))
 }
 
-// Renders an Entry into a Page (html string)
+// Renders an Entry into a Page (HTML string)
 function renderPage(entry: Entry): string {
-  // Read default page html from defaults folder
+  // Read default page HTML from defaults folder
   let page: string = fs.readFileSync(path.resolve(__dirname, '../../defaults/imago/page.html')).toString()
   // Replace keywords in reverse order in the template so the replaced content
   // can't interfere with the process (only first occurence is replaced)
