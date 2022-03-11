@@ -3,5 +3,5 @@
     <channel>
         <title>SITETITLE</title>
         <link>SITEURL</link>
-        <description><![CDATA[SITEDESCRIPTION]]></description>
+        <description><![CDATA[<div style="white-space: pre-wrap">SITEDESCRIPTION</div>]]></description>
         <generator>Pupate</generator>

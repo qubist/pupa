@@ -1,6 +1,6 @@
         <item>
             <title>TITLE</title>
             <link>SITEURLSLUG</link>
-            <description><![CDATA[DESCRIPTION]]></description>
+            <description><![CDATA[<div style="white-space: pre-wrap">DESCRIPTION</div>]]></description>
             <pubDate>DATE</pubDate>
         </item>
