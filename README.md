@@ -24,10 +24,16 @@ it. Just write, then watch your ideas emerge fully formed and beautiful.
 ## Install
 
 ```shell
-sudo npm install pupate -g
+sudo npm install -g pupate
 ```
 
 Run `puate help` to make sure pupate was installed correctly.
+
+## Update
+
+```shell
+sudo npm update -g pupate
+```
 
 ## Usage
 
