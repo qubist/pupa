@@ -3,18 +3,18 @@
     <channel>
         <title>Will's blog</title>
         <link>https://www.example.com/</link>
-        <description><![CDATA[Here's my blog! It's made with Pupate, a static-site-generator I built. You can read some of my things that I've written. Go on!]]></description>
+        <description><![CDATA[<div style="white-space: pre-wrap">Here's my blog! It's made with Pupate, a static-site-generator I built. You can read some of my things that I've written. Go on!</div>]]></description>
         <generator>Pupate</generator>
         <item>
             <title>bold, ital, and lots of colors in the title!</title>
             <link>https://www.example.com/title-stress-test</link>
-            <description><![CDATA[That's it, hadda doit]]></description>
+            <description><![CDATA[<div style="white-space: pre-wrap">That's it, hadda doit</div>]]></description>
             <pubDate>today</pubDate>
         </item>
         <item>
             <title>CSS test</title>
             <link>https://www.example.com/hacking-test</link>
-            <description><![CDATA[This is a <span style="text-decoration: underline">test</span> of css soup-making recipe. First, do <span class="special-word">something</span>.
+            <description><![CDATA[<div style="white-space: pre-wrap">This is a <span style="text-decoration: underline">test</span> of css soup-making recipe. First, do <span class="special-word">something</span>.
 
 testing css variables and more!
 
@@ -23,16 +23,16 @@ testing css variables and more!
   body {
     --special-color: magenta;
   }
-</style>]]></description>
+</style></div>]]></description>
             <pubDate>2021/03/04</pubDate>
         </item>
         <item>
             <title>How I make soup</title>
             <link>https://www.example.com/soup</link>
-            <description><![CDATA[This is a post with my meta-soup-making recipe. First, do something.
+            <description><![CDATA[<div style="white-space: pre-wrap">This is a post with my meta-soup-making recipe. First, do something.
 
 Make sure you eat the soup, don't drink it.
-]]></description>
+</div>]]></description>
             <pubDate>2021/03/04</pubDate>
         </item>
     </channel>
