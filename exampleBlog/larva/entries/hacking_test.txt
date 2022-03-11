@@ -10,3 +10,4 @@ This is a <span style="text-decoration: underline">test</span> of css {soup-maki
   body {
     --special-color: magenta;
   }
+</style>

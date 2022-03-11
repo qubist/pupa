@@ -1,9 +1,9 @@
-fontIs
 sizeIs
 textColorIs #adbac7
 linkColorIs #cfddea
 backgroundColorIs #22272e
 showIndexWith
-sortIndexBy
+sortIndexBy title
 pageURLsBasedOn
 outputLocationIs
+RSSBaseURLIs https://www.example.com/

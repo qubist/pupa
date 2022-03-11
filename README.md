@@ -121,7 +121,7 @@ Available embellishments are hyperlinks, bold, italic, and text-color.
 
 
 
-<!-- END EMBELLISHMENTS TABLE -->
+<!-- EMBELLISHMENTS TABLE -->
 
 <table><thead><tr>
     <th>Embellishment</th>
@@ -236,6 +236,9 @@ All embellishments besides links are allowed to be nested.
 The `larva/options.txt` file defines options for the whole site. Each line
 contains a camel-case option name followed by a space followed by the value for
 that option. If an available option is not specified, its default is used.
+
+If you ran `pupate spawn`, an options file comes pre-populated with all
+available options set to their defaults.
 
 
 
@@ -357,6 +360,22 @@ that option. If an available option is not specified, its default is used.
 <td>Valid path string</td><td>
 
 `./imago/`
+
+</td></tr><tr><td>
+
+`RSSBaseURLIs`
+
+</td><td>
+
+The base URL of your site, used by the RSS feed to link to your site and its pages. **Must end in a slash!** For example, if a certain page on your site has the address `https://jerbix.com/crumble-university`, this option should be set to `https://jerbix.com/`. If you don't use the RSS feature you can ignore or delete this option.
+
+</td><td>
+    
+Valid URL ending in `/`
+
+</td><td>
+
+`https://www.example.com/`
 
 </td></tr></tbody></table>
 

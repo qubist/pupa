@@ -6,6 +6,7 @@ import { logger } from '../bin/index'
 import { OPTIONS_FILENAME, HOMEPAGE_FILENAME } from './consts'
 import { createOptions } from './options'
 import { createPages } from './pages'
+import { createRSS } from './rss'
 import { createHomepage } from './homepage'
 import { createStylesheet } from './stylesheet'
 import { Entry, makeEntry } from './entry'
@@ -94,6 +95,9 @@ export function eclose(): void {
   // Create homepage
   let homepageEntry = makeEntry('./larva/homepage.txt')
   createHomepage(homepageEntry, outputLocation, pageEntries, options)
+
+  // Create RSS XML file
+  createRSS(pageEntries, homepageEntry, options)
 
   // Create stylesheet
   createStylesheet(outputLocation, options)

@@ -7,3 +7,4 @@ showIndexWith dates
 sortIndexBy newest
 pageURLsBasedOn filename
 outputLocationIs ./imago/
+RSSBaseURLIs https://www.example.com/

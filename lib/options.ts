@@ -34,7 +34,7 @@ function getOptionsDict(filename: string): OptionsDict {
   var { boolean, maybeDetails } = validOptionsValues(optionsDict)
   if (!boolean) {
       let details: string = maybeDetails as string
-      logger.error('The following options in '.red + filename.reset + ' were not valid: '.red + details)
+      logger.error('The following options in '.red + filename.reset + ' were not valid: '.red + details.reset + " Check the documentation for each option's allowed values.".red)
       process.exit(1)
   }
 
@@ -45,6 +45,7 @@ type CSSValue = string
 type ShowIndexWithValue = 'dates' | 'noDates' | 'dont'
 type SortIndexByValue = 'newest' | 'oldest' | 'filename' | 'title'
 export type PageURLsBasedOnValue = 'title' | 'filename' | 'date'
+type URLValue = string
 
 export interface Options {
     font: CSSValue,
@@ -55,7 +56,8 @@ export interface Options {
     showIndexWith: ShowIndexWithValue,
     sortIndexBy: SortIndexByValue,
     pageURLsBasedOn: PageURLsBasedOnValue,
-    outputLocation: string
+    outputLocation: string,
+    RSSBaseURL: URLValue,
 }
 
 export function createOptions(optionsFile: string): Options {
@@ -72,7 +74,9 @@ export function createOptions(optionsFile: string): Options {
     textColor: userOptionsDict['textColorIs'] || defaultOptionsDict['textColorIs'],
     linkColor: userOptionsDict['linkColorIs'] || defaultOptionsDict['linkColorIs'],
     backgroundColor: userOptionsDict['backgroundColorIs'] || defaultOptionsDict['backgroundColorIs'],
-    // these next strings are checked, so we can use type assertion here
+    RSSBaseURL: userOptionsDict['RSSBaseURLIs'] || defaultOptionsDict['RSSBaseURLIs'],
+    // these next strings are checked by validOptionsValues, so we can safely
+    // use type assertion here
     showIndexWith: (userOptionsDict['showIndexWith'] || defaultOptionsDict['showIndexWith']) as ShowIndexWithValue,
     sortIndexBy: (userOptionsDict['sortIndexBy'] || defaultOptionsDict['sortIndexBy']) as SortIndexByValue,
     pageURLsBasedOn: (userOptionsDict['pageURLsBasedOn'] || defaultOptionsDict['pageURLsBasedOn']) as PageURLsBasedOnValue,
@@ -125,6 +129,12 @@ function validOptionsValues(optionsDict: OptionsDict): BooleanWithDetails  {
     if (('pageURLsBasedOn' in optionsDict) && (!okVals.includes(optionsDict['pageURLsBasedOn']))) {
       valid = false
       invalidValues.push(`pageURLsBasedOn ${optionsDict['pageURLsBasedOn']}`)
+    }
+
+    // RSSBaseURL must end in slash
+    if (('RSSBaseURLIs' in optionsDict) && (!/\/$/.test(optionsDict['RSSBaseURLIs']))) {
+      valid = false
+      invalidValues.push(`RSSBaseURLIs ${optionsDict['RSSBaseURLIs']}`)
     }
 
     let maybeDetails: string | undefined
