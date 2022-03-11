@@ -120,7 +120,7 @@ nail. Luckily, we have a lot less to deal with here.
 
   [WYSRDWYG]: /WYSRDWYG.md
 
-Available embellishments are hyperlinks, bold, italic, and text-color.
+Available embellishments are hyperlinks, bold, italic, and text-color. Special characters can be escaped with `\`.
 
 <details><summary>Embellishment details</summary>
 
