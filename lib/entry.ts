@@ -10,11 +10,12 @@ export interface Entry {
 export function makeEntry(path: string): Entry {
   let file = fs.readFileSync(path)
   let lines = file.toString().split(/\r?\n/)
-  // Final filename in path, without extension
+
+  // Filename is the last item in path, without extension
   let filename = path.split('/').slice(-1)[0].split('.').slice(0,1)[0]
 
   // All lines after first two + optional newline are content
-  let content = lines[2] == '' ? lines.slice(3).join('\n') : lines.slice(2).join('\n');
+  let content = lines.slice(3).join('\n')
 
   return {
     filename,
