@@ -101,7 +101,7 @@ export function eclose(): void {
 
   // Create stylesheet
   createStylesheet(outputLocation, options)
-  logger.info(`Wrote ${pageEntries.length + 2} files`.cyan)
+  logger.info(`Wrote ${pageEntries.length + 3} files`.cyan)
 
   logger.info(`Emerged! A tender new imago lives at: ${outputLocation.reset}`.green)
 }
