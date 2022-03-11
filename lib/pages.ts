@@ -32,7 +32,7 @@ function renderPage(entry: Entry): string {
   return page
 }
 
-export function createPages(pageEntries: Entry[], options: Options) {
+export function createPages(pageEntries: Entry[], options: Options): void {
   let usedSlugs: string[] = []
 
   // Iterate through all entries backwards so we can remove while iterating
