@@ -103,9 +103,9 @@ First, make the soup.
 
 In a Pupate-shaped directory, run `pupate eclose` (or just `pupate`) to generate
 css and html in the output directory based on the contents of the `larva/`
-directory.
+directory. Eclosion also generates an RSS file `rss.xml`.
 
-eclosion deletes all files in the output directory and re-creates them. So don't
+Eclosion deletes all files in the output directory and re-creates them. So don't
 store stuff in there. A backup is made to `pupate/.imagobackup/` in case you
 did.
 
