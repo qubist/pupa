@@ -9,7 +9,8 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "build": "tsc; cd exampleBlog; echo 'Updating example blog'; pupate -o WARN"
+    "build": "tsc; cd exampleBlog; echo 'Updating example blog'; pupate -o WARN",
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,9 @@
   "devDependencies": {
     "@types/node": "^15.12.0",
     "@types/yargs": "^17.0.8",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
+    "rewire": "^6.0.0",
     "typescript": "^4.3.2"
   }
 }

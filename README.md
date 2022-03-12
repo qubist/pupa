@@ -428,7 +428,7 @@ PR, but be prepared for it to be moved past for now.
    sudo npm install -g ./
    ```
 
-6. Run the build script after making changes to any `.ts` file.
+6. Run the build script after making changes to any `.ts` file
    
    ```shell
    npm run build
@@ -438,12 +438,20 @@ PR, but be prepared for it to be moved past for now.
    the `dist/` directory. The build script also automatically regenerates the
    example blog to keep it updated with the current source code.
 
+7. Run the tests
+
+   ```shell
+   npm run test
+   ```
+
 ### Publishing a new version to npm
 
 1. `npm run build` to compile TypeScript and build the example blog
-2. `npm version (major|minor|patch)` to bump the version number depending on the
+2. `npm run test` to make sure tests are passing
+3. `npm version (major|minor|patch)` to bump the version number depending on the
    changes
-3. `npm publish`
+4. `npm publish`
+5. `git push --tags`
 
 ## See also
 
