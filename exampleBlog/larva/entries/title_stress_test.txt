@@ -1,4 +1,0 @@
-*bold*, _ital_, and lots of {c}(red){o}(orange){l}(yellow){o}(green){r}(blue){s}(purple) in the [title](https://will.quest)*!*
-today
-
-That's it, hadda doit

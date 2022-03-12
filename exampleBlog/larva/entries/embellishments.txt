@@ -1,0 +1,30 @@
+Embellishme*n*ts
+2022/03/09
+
+Pupate entries are written in Pupate's WYSRDWYG embellishment markup. It's basically Markdown, but limited to just a few features.
+
+Surround text in * to get bold: *bold*
+
+And with _ to get italic: _italic!_
+
+------
+
+Familiarly, you can make links with square brackets and parantheses: [here's a link](https://www.example.com)
+
+------
+
+Unlike Markdown, you can make colored text! Use the same format as a link, but with curly-brackets instead of square ones. And in the parenthesis, put the CSS value of the color you'd like: {Colorful!}(red)
+
+Any CSS value will work: {gray}(#999)
+
+{r}(red){a}(orange){i}(yellow){n}(green){b}(blue){o}(indigo){w}(violet){!}(pink)
+
+------
+
+All these embellishments even work in the title (did you notice?)
+
+------
+
+You can also use the escape character (\\) if you want write something that would otherwise get parsed as an embellishment:
+
+\[here's how you write a link!\](https://chicken.coop) <- this won't get linkified

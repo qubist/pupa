@@ -1,0 +1,33 @@
+Using text
+2022/03/10
+
+By default, Pupate uses a monospaced font. That makes it easy to do things like...
+
+- make
+- bulleted
+- lists
+
+or 
+
+    |-------------|
+    | put         |
+    |  some words |
+    |   in a      |
+    |  box        |
+    |-------------|
+
+
+or
+
+ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 
+< include ASCII art! >
+ -------------------- 
+        \\   ^\_\_^
+         \\  (o-)\\_\_\_\_\_\_\_  /\\
+            (\_\_)\\       )\/
+                ||----w |
+                ||     ||
+
+  Pupate won't break your leading or trailing spaces, and won't mess with your newlines. Everything as you type it.
+
+Really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though

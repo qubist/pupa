@@ -1,9 +1,7 @@
-sizeIs
-textColorIs #adbac7
-linkColorIs #cfddea
+linkColorIs #cfddff
+textColorIs #cfddea
 backgroundColorIs #22272e
-showIndexWith
-sortIndexBy title
-pageURLsBasedOn
+showIndexWith dates
+sortIndexBy oldest
+pageURLsBasedOn filename
 outputLocationIs
-RSSBaseURLIs https://www.example.com/

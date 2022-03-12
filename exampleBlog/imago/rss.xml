@@ -1,39 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Will's blog</title>
+        <title>Pupate example blog</title>
         <link>https://www.example.com/</link>
-        <description><![CDATA[<div style="white-space: pre-wrap">Here's my blog! It's made with Pupate, a static-site-generator I built. You can read some of my things that I've written. Go on!</div>]]></description>
+        <description><![CDATA[<div style="white-space: pre-wrap">Welcome to the Pupate example blog! This is what a blog made with Pupate looks like. Pupate sites don't have to be blogs, but their simple structure works well for blogs.</div>]]></description>
         <generator>Pupate</generator>
         <item>
-            <title>bold, ital, and lots of colors in the title!</title>
-            <link>https://www.example.com/title-stress-test</link>
-            <description><![CDATA[<div style="white-space: pre-wrap">That's it, hadda doit</div>]]></description>
-            <pubDate>today</pubDate>
-        </item>
-        <item>
-            <title>CSS test</title>
-            <link>https://www.example.com/hacking-test</link>
-            <description><![CDATA[<div style="white-space: pre-wrap">This is a <span style="text-decoration: underline">test</span> of css soup-making recipe. First, do <span class="special-word">something</span>.
+            <title>HTML injection!</title>
+            <link>https://www.example.com/injection</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">So far the featureset of Pupate's embellishment markup seems pretty thin. But that's ok! In Pupate when we need something more, we can inject it by simply writing HTML.
 
-testing css variables and more!
 
-<style>.special-word{color: red;}</style>
+This is <span style="text-decoration: underline">some underlined text</span>.
+
+Here's a remote image loaded from Wikimedia:
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Cow_bw_06.svg">
+
+And a lil SVG icon written directly into the page :)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+<style type="text/css"><![CDATA[
+  .icon{fill: var(--textColor)}
+  );}
+]]></style>
+<path class="icon" fill-rule="evenodd" d="M1.543 7.25h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.506 6.506 0 00-4.666 5.5zm2.733 1.5H1.543a6.506 6.506 0 004.666 5.5 11.13 11.13 0 01-.352-.552c-.715-1.192-1.437-2.874-1.581-4.948zm1.504 0h4.44a9.637 9.637 0 01-1.363 4.177c-.306.51-.612.919-.857 1.215a9.978 9.978 0 01-.857-1.215A9.637 9.637 0 015.78 8.75zm4.44-1.5H5.78a9.637 9.637 0 011.363-4.177c.306-.51.612-.919.857-1.215.245.296.55.705.857 1.215A9.638 9.638 0 0110.22 7.25zm1.504 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.506 6.506 0 004.666-5.5h-2.733zm2.733-1.5h-2.733c-.144-2.074-.866-3.756-1.58-4.948a11.738 11.738 0 00-.353-.552 6.506 6.506 0 014.666 5.5zM8 0a8 8 0 100 16A8 8 0 008 0z"></path></svg>
+
+(Notice how that icon is the same color as the text? Pupate exposes the CSS variables --textColor, --backgroundColor and --linkColor for you to use! Handy.)
+
+------
+
+We can even get creative and add classes or CSS variables:
+
+Jack and Jo <span class="verb">walked</span> to and fro, they <span class="verb">found</span class="verb"> a <span class="noun">frog</span> beneath them.
+Before they could <span class="verb">grab</span class="verb"> it, it <span class="verb">turned</span class="verb"> into a <span class="noun">rabbit</span>, and <span class="verb">ran</span class="verb"> into its <span class="noun">heath-den</span>.
+<style>
+.noun{color: red;}
+.verb{color: blue;}
+</style>
+
+This is a very special sentence and deserves a special color
 <style>
   body {
     --special-color: magenta;
   }
-</style></div>]]></description>
-            <pubDate>2021/03/04</pubDate>
+</style>
+
+------
+
+The philosophy behind all this is that most of the time, we just need to write text, so we should pretty much just handle simple text things with our markup. But there's always that one moment you need an image or some weird formatting. And in those cases it's great to have EVERY possibility that HTML and CSS afford you at your disposal. Pupate keeps you in flow at all costs, but doesn't limit you if you're desperate ;)</div>]]></description>
+            <pubDate>2022/03/13</pubDate>
         </item>
         <item>
-            <title>How I make soup</title>
-            <link>https://www.example.com/soup</link>
-            <description><![CDATA[<div style="white-space: pre-wrap">This is a post with my meta-soup-making recipe. First, do something.
+            <title>The options file</title>
+            <link>https://www.example.com/options</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">Pupate's site-wide options come from the Options File. "options.txt" is located in the top level of the Pupate directory (alongside "larva/"). You can read about all the options, their available values, and their defaults in the documentation, but here's a quick discussion of this blog's options file:
 
-Make sure you eat the soup, don't drink it.
-</div>]]></description>
-            <pubDate>2021/03/04</pubDate>
+   linkColorIs #cfddff
+   textColorIs #cfddea
+   backgroundColorIs #22272e
+   showIndexWith dates
+   sortIndexBy oldest
+   pageURLsBasedOn filename
+   outputLocationIs
+
+First off, not all the options that Pupate has are in this options file. That's fine, Pupate will just use the defaults (which you can see in "defaults/options.txt"). For example, I'm not really using the RSS feature on this blog so I just ommitted the "RSSBaseURL" option. The default value "https://www.example.com" will get used, but I don't really care.
+
+Also, not every option in the options file needs to have a value associated with it. In this case, the default will also be used. Here I like the default output location ("imago/") so I'm choosing not to change that option, but to remind myself that it exists, I'm leaving the "outputLocationIs" option keyword in the file, with nothing after it.
+
+A lot of the style options take any CSS as a value, so you can add gradients and any CSS-parsable colors or sizes!
+
+You can also use the CSS keywords "initial", "unset", "default" etc. to reset values to their browser-defined defaults rather than Pupate's defaults. If I included the line
+
+   sizeIs default
+
+in my options.txt, the font size would be the smaller browser default rather than the slightly bigger 16px that Pupate sets it to by default.
+
+Blank lines in the options file are ignored so you can split your options into sections if you want.</div>]]></description>
+            <pubDate>2022/03/12</pubDate>
+        </item>
+        <item>
+            <title>RSS</title>
+            <link>https://www.example.com/rss</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">Pupate generates an RSS feed of all entries. Check out the file rss.xml to see it! The feed gets updated every time you run "pupate" and the RSS file lives in your output location ("imago/" by default).</div>]]></description>
+            <pubDate>2022/03/12</pubDate>
+        </item>
+        <item>
+            <title>Using text</title>
+            <link>https://www.example.com/text</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">By default, Pupate uses a monospaced font. That makes it easy to do things like...
+
+- make
+- bulleted
+- lists
+
+or 
+
+    |-------------|
+    | put         |
+    |  some words |
+    |   in a      |
+    |  box        |
+    |-------------|
+
+
+or
+
+ ____________________ 
+< include ASCII art! >
+ -------------------- 
+        \   ^__^
+         \  (o-)\_______  /\
+            (__)\       )/
+                ||----w |
+                ||     ||
+
+  Pupate won't break your leading or trailing spaces, and won't mess with your newlines. Everything as you type it.
+
+Really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though really long lines will wrap though</div>]]></description>
+            <pubDate>2022/03/10</pubDate>
+        </item>
+        <item>
+            <title>Embellishments</title>
+            <link>https://www.example.com/embellishments</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">Pupate entries are written in Pupate's WYSRDWYG embellishment markup. It's basically Markdown, but limited to just a few features.
+
+Surround text in * to get bold: bold
+
+And with _ to get italic: italic!
+
+------
+
+Familiarly, you can make links with square brackets and parantheses: here's a link
+
+------
+
+Unlike Markdown, you can make colored text! Use the same format as a link, but with curly-brackets instead of square ones. And in the parenthesis, put the CSS value of the color you'd like: Colorful!
+
+Any CSS value will work: gray
+
+rainbow!
+
+------
+
+All these embellishments even work in the title (did you notice?)
+
+------
+
+You can also use the escape character (\) if you want write something that would otherwise get parsed as an embellishment:
+
+[here's how you write a link!](https://chicken.coop) <- this won't get linkified</div>]]></description>
+            <pubDate>2022/03/09</pubDate>
+        </item>
+        <item>
+            <title>This is the title of the entry!</title>
+            <link>https://www.example.com/layout</link>
+            <description><![CDATA[<div style="white-space: pre-wrap">That (not so?) empty line above, separates the content from the title and date. It's always ignored by Pupate and should be left empty.
+
+But everything below that is simply content! For ever and ever. And that's the layout of an entry in Pupate.
+
+The one other thing to pay attention to is the filename. Sounds irrelevant right? Well depending on your options file, it could be used as the URL-slug for the page when it's generated. In this blog, it is!</div>]]></description>
+            <pubDate>2022/03/08 <- (this is the date)</pubDate>
         </item>
     </channel>
 </rss>

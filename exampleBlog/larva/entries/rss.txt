@@ -1,0 +1,4 @@
+RSS
+2022/03/12
+
+Pupate generates an RSS feed of all entries. Check out the file [rss.xml](../rss.xml) to see it! The feed gets updated every time you run "pupate" and the RSS file lives in your output location ("imago/" by default).

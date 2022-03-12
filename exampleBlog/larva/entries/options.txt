@@ -1,0 +1,26 @@
+The options file
+2022/03/12
+
+Pupate's site-wide options come from the Options File. "options.txt" is located in the top level of the Pupate directory (alongside "larva/"). You can read about all the options, their available values, and their defaults in the documentation, but here's a quick discussion of this blog's options file:
+
+   linkColorIs #cfddff
+   textColorIs #cfddea
+   backgroundColorIs #22272e
+   showIndexWith dates
+   sortIndexBy oldest
+   pageURLsBasedOn filename
+   outputLocationIs
+
+First off, not all the options that Pupate has are in this options file. That's fine, Pupate will just use the defaults (which you can see in "defaults/options.txt"). For example, I'm not really using the RSS feature on this blog so I just ommitted the "RSSBaseURL" option. The default value "https://www.example.com" will get used, but I don't really care.
+
+Also, not every option in the options file needs to have a value associated with it. In this case, the default will also be used. Here I like the default output location ("imago/") so I'm choosing not to change that option, but to remind myself that it exists, I'm leaving the "outputLocationIs" option keyword in the file, with nothing after it.
+
+A lot of the style options take any CSS as a value, so you can add gradients and any CSS-parsable colors or sizes!
+
+You can also use the CSS keywords "initial", "unset", "default" etc. to reset values to their browser-defined defaults rather than Pupate's defaults. If I included the line
+
+   sizeIs default
+
+in my options.txt, the font size would be the smaller browser default rather than the slightly bigger 16px that Pupate sets it to by default.
+
+Blank lines in the options file are ignored so you can split your options into sections if you want.
