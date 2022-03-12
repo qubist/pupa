@@ -4,25 +4,11 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import yargs = require('yargs')
-import winston = require('winston')
-const { combine, timestamp, printf } = winston.format;
 
 import { check, spawn, eclose } from '../lib/pupate'
+import { logger } from '../lib/logger'
 import 'colors'
 
-// Create logger
-export const logger = winston.createLogger({
-  transports: [ new winston.transports.Console() ],
-  format: combine(
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    printf(({ level, message, timestamp }) => {
-      // return `[${timestamp}] ${level}: ${message}`
-      return message
-    })
-  ),
-  level: 'info',
-  silent: false
-})
 
 // Handle arguments and options
 

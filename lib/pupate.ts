@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import 'colors'
 import * as path from 'path'
-import { logger } from '../bin/index'
+import { logger } from './logger'
 
 import { OPTIONS_FILENAME, HOMEPAGE_FILENAME } from './consts'
 import { createOptions } from './options'

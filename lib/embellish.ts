@@ -1,4 +1,3 @@
-
 // Modifies text, adding HTML in place of Pupate embellishment markup
 export function embellish(text: string): string {
   return text

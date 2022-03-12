@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import 'colors'
 
-import { logger } from '../bin/index'
+import { logger } from './logger'
 import { Options } from './options'
 import { Entry } from './entry'
 import { embellish, unembellish } from './embellish'

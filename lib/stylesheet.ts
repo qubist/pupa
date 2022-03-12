@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
-import { logger } from '../bin/index'
+import { logger } from './logger'
 import { Options } from './options'
 
 export function createStylesheet(outputLocation: string, options: Options) {
