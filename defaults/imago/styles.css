@@ -4,14 +4,18 @@
 /* Pupate variable styles: */
 
 body {
+  --textColor: TEXTCOLOR;
+  --backgroundColor: BACKGROUNDCOLOR;
+  --linkColor: LINKCOLOR;
+
   font-family: FONTFAMILY;
   font-size: FONTSIZE;
-  color: TEXTCOLOR;
-  background: BACKGROUNDCOLOR;
+  color: var(--textColor);
+  background: var(--backgroundColor);
 }
 
 body a {
-  color: LINKCOLOR;
+  color: var(--linkColor);
 }
 
 /* Static styles: */
