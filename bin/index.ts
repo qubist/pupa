@@ -70,19 +70,27 @@ try {
 }
 
 let subcommand = argv._[0]
-switch (subcommand) {
-  case 'check':
-    // Check if directory is pupate-shaped with param loud = true
-    check(true)
-    break
-  case 'spawn':
-    spawn()
-    break
-  case undefined:
-  case 'eclose':
-    eclose()
-    break
-  default:
-    logger.error('Unrecognized subcommand:'.red, subcommand)
-    process.exit(1)
+
+try {
+
+  switch (subcommand) {
+    case 'check':
+      // Check if directory is pupate-shaped with param loud = true
+      check(true)
+      break
+    case 'spawn':
+      spawn()
+      break
+    case undefined:
+    case 'eclose':
+      eclose()
+      break
+    default:
+      throw 'Unrecognized subcommand:'.red, subcommand
+  }
+
+} catch (err) {
+  // If any error is thrown, log it and exit
+  logger.error(err)
+  process.exit(1)
 }

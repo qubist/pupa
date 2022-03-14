@@ -12,8 +12,7 @@ function slugify(value: string, form: PageURLsBasedOnValue): string {
   .replace(/^-|-$/g, '') // remove leading/trailing dashes
 
   if (value == '') {
-    logger.error('Slugification failed! An entry had the '.red + form.red + ` "${value}"`.reset + ', which produced an empty slug. Try changing this '.red + form.red + ' or choose a new option for the pageURLsBasedOn setting.'.red)
-    process.exit(1)
+    throw 'Slugification failed! An entry had the '.red + form.red + ` "${value}"`.reset + ', which produced an empty slug. Try changing this '.red + form.red + ' or choose a new option for the pageURLsBasedOn setting.'.red
   }
 
   return value

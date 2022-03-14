@@ -16,8 +16,7 @@ function getOptionsDict(filename: string): OptionsDict {
 
   // Check that the options file is formatted right
   if (!validOptionsFormat(optionsList)) {
-    logger.error(`Options file not formatted properly: ${filename.reset}`.red)
-    process.exit(1)
+    throw `Options file not formatted properly: ${filename.reset}`.red
   }
 
   let optionsDict: Record<string, string> = {}
@@ -34,8 +33,7 @@ function getOptionsDict(filename: string): OptionsDict {
   var { boolean, maybeDetails } = validOptionsValues(optionsDict)
   if (!boolean) {
       let details: string = maybeDetails as string
-      logger.error('The following options in '.red + filename.reset + ' were not valid: '.red + details.reset + " Check the documentation for each option's allowed values.".red)
-      process.exit(1)
+      throw 'The following options in '.red + filename.reset + ' were not valid: '.red + details.reset + " Check the documentation for each option's allowed values.".red
   }
 
   return optionsDict
