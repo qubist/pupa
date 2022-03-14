@@ -12,9 +12,9 @@ export function makeEntry(path: string): Entry {
   let lines = file.toString().split(/\r?\n/)
 
   // Filename is the last item in path, without extension
-  let filename = path.split('/').slice(-1)[0].split('.').slice(0,1)[0]
+  let filename = path.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')
 
-  // All lines after first two + optional newline are content
+  // All lines after first two are content
   let content = lines.slice(3).join('\n')
 
   return {
