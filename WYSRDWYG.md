@@ -97,9 +97,9 @@ The overriding design goal for Markdown's formatting syntax is to make it as rea
 
 Markdown works with Movable Type version 2.6 or later (including Movable Type 3.0).
 
-1.  Copy the "Markdown.pl" file into your Movable Type "plugins" directory.
+1. Copy the "Markdown.pl" file into your Movable Type "plugins" directory.
 
-1.  Once installed, Markdown will appear as an option in Movable Type's Text Formatting pop-up menu.
+1. Once installed, Markdown will appear as an option in Movable Type's Text Formatting pop-up menu.
 ```
 
 I'm not shouting "Bring back the old ways!!", because Markdown has changed.
