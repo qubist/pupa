@@ -1,8 +1,8 @@
 'use strict';
 var expect = require('chai').expect
 var rewire = require("rewire");
-require('colors')
 
+require('colors')
 var slugs = rewire('../dist/lib/slugs.js')
 
 
