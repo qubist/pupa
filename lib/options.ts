@@ -88,7 +88,7 @@ function validOptionsFormat(optionsList: string[]): boolean {
     // regex: each line must be either: an option name with any amount of
     // whitespace after, or an option name with a space and then anything after
     // that, or a blank line.
-    if (!/^[A-z]+\W*$|^[A-z]+ .+$|^\s*$/.test(o)) {
+    if (!/^[A-z]+\s*$|^[A-z]+ .+$|^\s*$/.test(o)) {
       return false
     }
   }
