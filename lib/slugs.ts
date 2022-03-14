@@ -1,7 +1,6 @@
 import { PageURLsBasedOnValue } from './options'
 import { Entry } from './entry'
 import { unembellish } from './embellish'
-import { logger } from './logger'
 
 // Make a title, filename, or date ready to be part of an entry URL
 function slugify(value: string, form: PageURLsBasedOnValue): string {

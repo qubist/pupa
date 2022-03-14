@@ -4,7 +4,7 @@ import * as path from 'path'
 import { logger } from './logger'
 
 import { Entry } from './entry'
-import { embellish, unembellish } from './embellish'
+import { unembellish } from './embellish'
 import { getSlug } from './slugs'
 import { Options } from './options'
 
