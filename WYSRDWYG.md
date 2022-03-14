@@ -1,7 +1,7 @@
 WYSRDWYG
 ========
 
-**W**hat **Y**ou *S*ee **R**epresents **D**irectly **W**hat **Y**ou **G**et
+**W**hat **Y**ou **S**ee **R**epresents **D**irectly **W**hat **Y**ou **G**et
 
 History: Markdown's fall from readable glory
 --------
