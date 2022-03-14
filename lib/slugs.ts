@@ -4,11 +4,11 @@ import { unembellish } from './embellish'
 
 // Make a title, filename, or date ready to be part of an entry URL
 function slugify(value: string, form: PageURLsBasedOnValue): string {
-  value = value.replace(/^\s+|\s+$/g, '') // remove trailing and leading whitespace
+  value = value.replace(/^\s+(?=[^\s]])|(?<=[^\s])\s+$/g, '') // remove trailing and leading whitespace
   .toLowerCase()
   .replace(/\s+|[/_;:,? '"*()[\]{}!]/g, '-') // replace invalid characters with dashes
+  .replace(/^-+(?=[^-])|(?<=[^-])-+$/g, '') // remove leading/trailing dashes
   .replace(/-+/g, '-') // collapse dashes
-  .replace(/^-|-$/g, '') // remove leading/trailing dashes
 
   if (value == '') {
     throw 'Slugification failed! An entry had the '.red + form.red + ` "${value}"`.reset + ', which produced an empty slug. Try changing this '.red + form.red + ' or choose a new option for the pageURLsBasedOn setting.'.red
