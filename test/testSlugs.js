@@ -10,8 +10,16 @@ describe('slugify function', () => {
     var slugify = slugs.__get__('slugify')
     let form = 'filename'
 
-    it('should make text lowercase', () => {
-        expect(slugify('HELLo', form)).to.equal('hello')
+    it('makes text lowercase if form is title', () => {
+        expect(slugify('Five Reasons to Date a Walrus', 'title')).to.equal('five-reasons-to-date-a-walrus')
+    })
+    
+    it("doesn't make text lowercase if form is date", () => {
+        expect(slugify('11MAY2016', 'date')).to.equal('11MAY2016')
+    })
+
+    it("doesn't make text lowercase if form is filename", () => {
+        expect(slugify('WYSRDWYG.txt', 'filename')).to.equal('WYSRDWYG.txt')
     })
 
     it('removes trailing and leading whitespace', () => {
@@ -27,7 +35,7 @@ describe('slugify function', () => {
         expect(slugify('\t', form)).to.equal('-')
         expect(slugify('\'', form)).to.equal('-')
         expect(slugify('/_;:,? \'"*()[]{}!', form)).to.equal('-') // dashes get collapsed later
-        expect(slugify('omg! This is  the title/description of an article :)', form)).to.equal('omg-this-is-the-title-description-of-an-article') // trailing dash is removed later
+        expect(slugify('omg! This is  the title/description of an article :)', 'title')).to.equal('omg-this-is-the-title-description-of-an-article') // trailing dash is removed later
     })
 
     it('collapses dashes', () => {
