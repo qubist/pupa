@@ -93,3 +93,5 @@ describe('unembellish function', () => {
         })
     })
 })
+
+// More tests for each regex live at regex101.com (links next to regexes in embellish.ts)
