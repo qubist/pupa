@@ -75,7 +75,8 @@ supports—They haven't gone anywhere. But much more common now is to let ones
 text editor soft-wrap lines, to create headings with just a single group of `#`s
 at the start of the line, and to create links which include the URL inline using
 `[]()`: all pratices that reduce readability and take unrendered markdown steps
-further from that original vision of plaintext email format. Here's what that same text might look like nowdays:
+further from that original vision of plaintext email format. Here's what that
+same text might look like nowdays:
 
 ```
 ## Download
@@ -182,6 +183,15 @@ Directives for a New Readable Markup Syntax
 Pupate and the WYSRDWYG syntax
 --------
 
-So we now approach the WYSRD. What You See should **Represent Directly** What You Get. The representation should be one-to-one. And the representation should be readable, meaning either the plaintext looks like the rendered output, or it's easy to mentally convert it to the rendered output on-the-fly.
+So we now approach the WYSRD. What You See should **Represent Directly** What
+You Get. The representation should be one-to-one. And the representation should
+be readable, meaning either the plaintext looks like the rendered output, or
+it's easy to mentally convert it to the rendered output on-the-fly.
 
-With Pupate, we're not providing the user with all the options of Markdown, and that's on purpose. It's cool to stay in a terminal-like, one-font-size-only type of space, and users are encouraged to break out of that with HTML injection if necessary. But in exchange for the features of Markdown, Pupate provides users with (what is hopefully) a true WYSRDWYG editing experience where pieces of writing can grow smoothly and safely and then emerge, leaping free of their cocoons to bask in the warm light of the public view.
+With Pupate, we're not providing the user with all the options of Markdown, and
+that's on purpose. It's cool to stay in a terminal-like, one-font-size-only type
+of space, and users are encouraged to break out of that with HTML injection if
+necessary. But in exchange for the features of Markdown, Pupate provides users
+with (what is hopefully) a true WYSRDWYG editing experience where pieces of
+writing can grow smoothly and safely and then emerge, leaping free of their
+cocoons to bask in the warm light of the public view.
