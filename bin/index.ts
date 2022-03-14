@@ -22,15 +22,15 @@ interface Arguments {
 
 let argv : Arguments = yargs
  .command(
-    ['check', 'c'],
+    ['check'],
     'check that the current working directory is a valid Pupate-shaped directory'
   )
   .command(
-    ['spawn', 's'],
+    ['spawn'],
     'create necessary pupate files in the current working directory'
   )
   .command(
-    ['eclose', 'emerge', 'e'], 
+    ['eclose'], 
     'build the site in the output directory based on the content of the larva directory'
   )
   .command(
@@ -38,7 +38,7 @@ let argv : Arguments = yargs
     false
   )
   .option('o', {
-    alias: ['output', 'out', 'loglevel'],
+    alias: ['output'],
     choices: ['ERROR', 'WARN', 'INFO', 'DEBUG'] as const,
     coerce: value => { return value.toUpperCase() },
     default: 'INFO',

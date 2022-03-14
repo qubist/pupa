@@ -38,26 +38,21 @@ sudo npm update -g pupate
 ## Usage
 
 ```
-
 pupate
 
 Commands:
   pupate check   check that the current working directory is a valid
-                 Pupate-shaped directory                            [aliases: c]
+                 Pupate-shaped directory
   pupate spawn   create necessary pupate files in the current working directory
-                                                                    [aliases: s]
   pupate eclose  build the site in the output directory based on the content of
-                 the larva directory                        [aliases: emerge, e]
+                 the larva directory
 
 Options:
-      --version                    Show version number                 [boolean]
-  -o, --output, --out, --loglevel  minimum importance-level of messages to
-                                   display
+      --version  Show version number                                   [boolean]
+  -o, --output   minimum importance-level of messages to display
           [string] [choices: "ERROR", "WARN", "INFO", "DEBUG"] [default: "INFO"]
-  -q, --quiet                      run without any output
-                                                      [boolean] [default: false]
-      --help                       Show help                           [boolean]
-      
+  -q, --quiet    run without any output               [boolean] [default: false]
+      --help     Show help                                             [boolean]      
 ```
 
 ### Overview
