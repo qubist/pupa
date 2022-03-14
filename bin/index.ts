@@ -86,7 +86,7 @@ try {
       eclose()
       break
     default:
-      throw 'Unrecognized subcommand:'.red, subcommand
+      throw 'Unrecognized subcommand: '.red + `${subcommand}`
   }
 
 } catch (err) {
