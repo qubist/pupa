@@ -29,7 +29,7 @@ sudo npm install -g pupate
 
 Run `puate help` to make sure pupate was installed correctly.
 
-## Update
+### Updating
 
 ```shell
 sudo npm update -g pupate
