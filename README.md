@@ -389,11 +389,7 @@ You can also see an [example options.txt in the example blog](/example%20blog/op
 
 ## Contributing
 
-PRs aren't currently accepted, as the project is too new and [premature scaling
-can stunt system iteration](https://notes.andymatuschak.org/About_these_notes?stackedNotes=z2kr7QrJczqYyfwLFcv1FLEUMdVTsgfYSdFXA).
-If you'd like to enter into closer collaboration with me on Pupate, feel free to
-send me an email. If you have an idea or problem, go ahead and make an issue or
-PR, but be prepared for it to be moved past for now.
+PRs accepted! Fixes for existing issues appreciated. Small improvements and tweaks will be considered. New features should probably happen in a fork, unless you convince me ;)
 
 ### Developing
 
