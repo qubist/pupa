@@ -385,7 +385,7 @@ Valid URL ending in `/`
 
 
 
-You can also see an [example options.txt in the example blog](/example%20blog/options.txt).
+You can also see an [example options.txt in the example blog](/exampleBlog/options.txt).
 
 ## Contributing
 
